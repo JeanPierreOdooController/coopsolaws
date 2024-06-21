@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="hr_employee_form_inherit" model="ir.ui.view">
+		<field name="name">hr.employee.form.inherit</field>
+		<field name="model">hr.employee</field>
+		<field name="inherit_id" ref="hr.view_employee_form"/>
+		<field name="arch" type="xml">
+			<field name="name" position="attributes">
+				<attribute name="invisible">1</attribute>
+				<attribute name="required">0</attribute>
+			</field>
+			<field name="leave_manager_id" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</field>
+			<field name="work_location" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</field>
+			<xpath expr="//group[@name='managers']" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+			<xpath expr="//group[4]" position="attributes">
+					<attribute name="string">Horario</attribute>
+			</xpath>
+			<field name="address_home_id" position="attributes">
+				<attribute name="string">Contacto Asociado</attribute>
+			</field>
+			<xpath expr="//field[@name='bank_account_id']" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+			<field name="country_id" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</field>
+			<xpath expr="//field[@name='km_home_work']" position="after">
+				<field name="condition"/>
+				<field name="country_id"/>
+				<field name="address" placeholder="Av Independencia N 102 Cercado-Arequipa"/>
+			</xpath>
+			<xpath expr="//field[@name='km_home_work']" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+			<field name="identification_id" position="before">
+				<field name="type_document_id"/>
+			</field>
+			<xpath expr="//group[@name='work_permit']" position="attributes">
+					<attribute name="invisible">1</attribute>
+			</xpath>
+			<field name="study_field" position="attributes">
+				<attribute name="string">Profesion</attribute>
+				<attribute name="placeholder">Ingeniero en Telecomunicaciones</attribute>
+			</field>
+			<field name="study_school" position="attributes">
+				<attribute name="string">Universidad/Instituto</attribute>
+				<attribute name="placeholder">Universidad Nacional de San Agustin</attribute>
+			</field>
+			<xpath expr="//page[@name='hr_settings']" position="attributes">
+					<attribute name="invisible">1</attribute>
+			</xpath>
+			<field name="mobile_phone" position="attributes">
+				<attribute name="string">Celular Trabajo</attribute>
+			</field>
+			<field name="work_phone" position="attributes">
+				<attribute name="string">Telefono Trabajo</attribute>
+			</field>
+			<field name="work_email" position="attributes">
+				<attribute name="string">Correo Electronico Laboral</attribute>
+			</field>
+			<field name="parent_id" position="attributes">
+				<attribute name="string">Jefe de Area</attribute>
+			</field>
+			<field name="job_title" position="attributes">
+				<attribute name="readonly">1</attribute>
+			</field>
+<!--			<field name="leave_manager_id" position="after">-->
+<!--				<field name="is_manager"/>-->
+<!--			</field>-->
+<!--			<field name="children" position="after">-->
+<!--				<field name="men"/>-->
+<!--				<field name="women"/>-->
+<!--			</field>-->
+			<field name="name" position="after">
+				<h1>
+					<field name="names" placeholder="Nombres" required="True"/>
+				</h1>
+				<h1>
+					<field name="last_name" placeholder="Apellido Paterno" required="True"/>
+				</h1>
+				<h1>
+					<field name="m_last_name" placeholder="Apellido Materno" required="True"/>
+				</h1>
+			</field>
+			<xpath expr="//page[@name='hr_settings']" position="before">
+				<page name="bank_accounts" string="Cuentas Bancarias">
+					<group string="Cuentas">
+						<group>
+							<field name="wage_bank_account_id"/>
+							<field name="bank_export_paymet"/>
+						</group>
+						<group>
+							<field name="cts_bank_account_id"/>
+							<field name="bank_export_cts"/>
+						</group>
+					</group>
+				</page>
+			</xpath>
+		</field>
+	</record>
+</odoo>

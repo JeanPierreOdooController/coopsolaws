@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_landed_cost_it_form_inherit_report" model="ir.ui.view">
+            <field name="name">landed.cost.it.form.inherit.report</field>
+            <field name="model">landed.cost.it</field>
+            <field name="inherit_id" ref="landed_cost_it.view_landed_cost_it_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="get_excel_saldos" type="object" string="Reporte" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//field[@name='detalle_ids']/tree/field[@name='flete']" position="attributes">
+                    <attribute name="string">Total GV</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_ids']/tree/field[@name='product_id']" position="after">
+                    <field name="type_landed_cost_id" optional="hide"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Advalorem">
+                        <field name="advalorem_ids" attrs="{'readonly':[('state','=','done')]}" context="{'default_landed_id': id}">
+                            <tree editable="bottom" decoration-danger="correct_product == False">
+                                <field name="correct_product" invisible="1"/> 
+                                <field name="picking_id" required="1"/>
+                                <field name="product_id" required="1"/>
+                                <field name="invoice_id"/>
+                                <field name="valormn" required="1"/>
+                                <field name="valorme"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+	</data>
+</odoo>

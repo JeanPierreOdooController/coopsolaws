@@ -1,0 +1,22 @@
+<odoo>
+	<data>
+        <record id="view_sale_order_form_structure_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.structure.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <field name="cost_structure_ids" invisible="1"/>
+                    <button string="Estructura de Costos" type="object"
+                        name="action_view_cost_structure"
+                        class="oe_stat_button" icon="fa-plus-square" groups="cost_structure_it.group_cost_structure_it"
+                        attrs="{'invisible': [('cost_structure_ids', '=', [])]}" />
+                </xpath>
+                <field name="state" position="before">
+                    <field name="cost_structure_visible" invisible="1"/>
+                    <button name="button_create_cost_structure" class="oe_highlight" groups="cost_structure_it.group_cost_structure_it" string="Crear E. Costos" type="object" attrs="{'invisible': ['|',('cost_structure_visible', '!=', True),('state','not in',['sale','done'])]}"/>
+                </field>
+            </field>
+        </record>
+	</data>
+</odoo>

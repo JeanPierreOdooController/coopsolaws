@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pt2_herencia" model="ir.ui.view">
+            <field name="name">product.template</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.product_template_form_view_procurement_button" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_open_quants']" position="attributes">
+                    <attribute name="groups">hidden_stock_hand_js_it.show_hand</attribute>
+                </xpath>
+
+            </field>
+    </record>
+
+    <record id="pt3_herencia" model="ir.ui.view">
+            <field name="name">product.template</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.product_template_form_view_procurement_button" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_update_quantity_on_hand']" position="attributes">
+                    <attribute name="groups">hidden_stock_hand_js_it.show_hand</attribute>
+                </xpath>
+
+            </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock.view_stock_quant_tree_editable">
+        <field name="name">stock.quant.tree.editable</field>
+        <field name="model">stock.quant</field>
+        <field eval="10" name="priority"/>
+        <field name="arch" type="xml">
+            <tree decoration-danger="inventory_quantity &lt; 0" editable="bottom"
+                  create="1" edit="1" import="0" js_class="singleton_list">
+                <field name="id" invisible="1"/>
+                <field name="tracking" invisible="1"/>
+                <field name="product_id" attrs="{'readonly': [('id', '!=', False)]}"
+                       invisible="context.get('single_product', False)"
+                       readonly="context.get('single_product', False)" force_save="1"
+                       options="{'no_create': True}"/>
+                <field name="location_id" attrs="{'readonly': [('id', '!=', False)]}"
+                       invisible="context.get('hide_location', False)"
+                       options="{'no_create': True}"/>
+                <field name="lot_id" groups="stock.group_production_lot"
+                       attrs="{
+                            'readonly': ['|', ('id', '!=', False), ('tracking', 'not in', ['serial', 'lot'])],
+                            'required': [('tracking', '!=', 'none')]
+                       }"
+                       invisible="context.get('hide_lot', False)"
+                       context="{'default_product_id': product_id, 'default_company_id': company_id}"/>
+                <field name="package_id" groups="stock.group_tracking_lot"
+                       attrs="{'readonly': [('id', '!=', False)]}"/>
+                <field name="owner_id" groups="stock.group_tracking_owner"
+                       attrs="{'readonly': [('id', '!=', False)]}"
+                       options="{'no_create': True}"/>
+                <field name="quantity" string="On Hand Quantity"
+                       invisible="1"/>
+                <field name="inventory_quantity" string="On Hand Quantity"
+                       readonly="0"/>
+                <field name="reserved_quantity" optional="hide"/>
+                <field name="product_uom_id" groups="uom.group_uom"/>
+                <field name='company_id' groups="base.group_multi_company" optional="show"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_doc_invoice_relac_form" model="ir.ui.view">
+			<field name="name">doc.invoice.relac.form</field>
+			<field name="model">doc.invoice.relac</field>
+			<field name="arch" type="xml">
+				<form create="false">
+					<sheet>
+						<group>
+							<group string='Documentos Relacionados'>
+								<field name="move_id" string="Asiento" width="4" readonly="1" force_save="1"/>
+								<field name="type_document_id" width="2"/>
+								<field name="date" width="3"/>
+								<field name="nro_comprobante" width="3"/>
+							</group>
+							<group>
+								<field name="amount_currency" width="2"/>
+								<field name="amount" width="2"/>
+								<field name="bas_amount" width="2"/>
+								<field name="tax_amount" width="2"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<record id="view_doc_invoice_relac_tree" model="ir.ui.view">
+			<field name="name">doc.invoice.relac.tree</field>
+			<field name="model">doc.invoice.relac</field>
+			<field eval="1" name="priority"/>
+			<field name="arch" type="xml">
+				<tree string="Documentos Relacionados" create="false">
+					<field name="move_id" width="4"  string="Asiento"/>
+					<field name="journal_id" width="4"/>
+					<field name="type_document_id" width="2"/>
+					<field name="date" width="3"/>
+					<field name="nro_comprobante" width="3"/>
+					<field name="amount_currency" width="2"/>
+					<field name="amount" width="2"/>
+					<field name="bas_amount" width="2"/>
+					<field name="tax_amount" width="2"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_doc_invoice_relac" model="ir.actions.act_window">
+			<field name="name">Documentos Relacionados</field>
+			<field name="res_model">doc.invoice.relac</field>
+			<field name="view_ids"
+                   eval="
+                            [
+                            (5, 0, 0),
+                            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_doc_invoice_relac_tree')}),
+							(0, 0, {'view_mode': 'form', 'view_id': ref('view_doc_invoice_relac_form')}),
+							(0, 0, {'view_mode': 'kanban'})
+                          ]"
+            />
+			<field name="help" type="html">
+			  <p class="o_view_nocontent_smiling_face">
+				Crear documentos relacionados
+			  </p>
+			</field>
+		</record>
+
+		<menuitem
+			id="menu_action_doc_invoice_relac"
+			action="action_doc_invoice_relac"
+			parent="account.menu_finance_entries_accounting_miscellaneous"
+			groups="account.group_account_invoice"
+			sequence="91"/>
+	</data>
+</odoo>

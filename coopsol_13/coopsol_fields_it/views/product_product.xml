@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="view_product_normal_form_coopsol_inherit" model="ir.ui.view">
+            <field name="name">product.product.form.coopsol.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='description']" position="before">
+                    <field name="characteristic_line_ids">
+                        <tree editable="bottom">
+                            <field name="description" required="1"/>
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+	</data>
+</odoo>

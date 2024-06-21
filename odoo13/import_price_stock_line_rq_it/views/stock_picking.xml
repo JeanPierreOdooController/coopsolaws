@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record model="ir.actions.server" id="action_genere_import_price_stock_line">
+            <field name="name">Actualizar Transferencia</field>
+            <field name="model_id" ref="model_stock_picking"/>
+            <field name="binding_model_id" ref="model_stock_picking" />
+            <field name="state">code</field>
+            <field name="code">action = records.action_wizard()</field>
+        </record>
+    </data>
+
+</odoo>

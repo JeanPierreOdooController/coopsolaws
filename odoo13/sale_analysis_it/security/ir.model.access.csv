@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_analysis_book_manager,sale.analysis.book.manager,sale_analysis_it.model_sale_analysis_book,account_base_it.group_account_tables_user,1,1,1,1
+access_sale_analysis_book_powerby_manager,sale.analysis.book.powerby,sale_analysis_it.model_sale_analysis_book_powerby,account_base_it.group_account_tables_user,1,1,1,1

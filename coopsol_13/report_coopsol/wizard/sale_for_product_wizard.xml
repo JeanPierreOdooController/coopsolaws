@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_sale_for_product_wizard_form" model="ir.ui.view">
+		<field name="name">sale.for.product.wizard.form</field>
+		<field name="model">sale.for.product.wizard</field>
+		<field name="arch" type="xml">
+			<form string="Cotizacion por Producto">
+				<group>
+					<group>
+						<field name="date" required="1"/>
+						<field name="partner_id" required="1"/>
+						<field name="contact_id" required="1" domain="[('commercial_partner_id','=',partner_id)]"/>
+					</group>
+					<group>
+						<field name="address" required="1"/>
+					</group>
+				</group>
+				<footer>
+					<button string="Generar Cotizacion" name="do_report" type="object" class="oe_highlight"/>
+					<button string="Cancel" class="oe_link" special="cancel"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="error_404_template" inherit_id="http_routing.404">
+            <xpath expr="//t[@t-call='web.frontend_layout']" position="replace">
+            <!-- <xpath expr="//div[@class='container']" position="remplace">
+                Agrega tu contenido personalizado aquí -->
+                <!-- <t t-call="website.website-404"> -->
+                <t t-call="website.error_404">
+                    
+                </t>
+                
+            </xpath>
+        </template>
+    </data>
+</odoo>

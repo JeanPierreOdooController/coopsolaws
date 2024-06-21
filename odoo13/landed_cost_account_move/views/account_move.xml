@@ -1,0 +1,20 @@
+<odoo>
+	<data>
+		<record id="view_move_form_inherit_landedcost" model="ir.ui.view">
+			<field name="name">move.form.inherit.landedcost</field>
+			<field name="model">account.move</field>
+			<field name="inherit_id" ref="account.view_move_form"/>
+			<field name="arch" type="xml">
+				<data>
+					<xpath expr="//notebook/page[@id='other_tab']/group/group/field[@name='invoice_payment_ref']" position="before">
+						<label for="landed_cost_id" string="Gasto Vinculado"/>
+							<div class="o_row">
+								<field name="landed_cost_id" domain="[('state','=','draft')]" nolabel="1"/>
+								<button name="add_to_landed_cost" states="posted" string="Agregar Lineas" type="object" class="oe_link"/>
+							</div>
+					</xpath>
+				</data>
+			</field>
+		</record>
+	</data>
+</odoo>

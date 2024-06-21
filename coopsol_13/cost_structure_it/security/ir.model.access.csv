@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cost_structure_it_group_user,cost.structure.it.group.user,cost_structure_it.model_cost_structure_it,group_cost_structure_it,1,1,1,1
+access_cost_structure_it_group_sale,cost.structure.group.sale,cost_structure_it.model_cost_structure_it,sales_team.group_sale_salesman,1,0,0,0
+access_cost_structure_it_group_manager,cost.structure.manager,cost_structure_it.model_cost_structure_it,sales_team.group_sale_manager,1,0,0,0
+access_cost_structure_remuneration_group_user,cost.structure.remuneration.group.user,cost_structure_it.model_cost_structure_remuneration,group_cost_structure_it,1,1,1,1
+access_cost_structure_social_benefit_group_user,cost.structure.social.benefit.group.user,cost_structure_it.model_cost_structure_social_benefit,group_cost_structure_it,1,1,1,1
+access_cost_structure_logistic_group_user,cost.structure.logistic.group.user,cost_structure_it.model_cost_structure_logistic,group_cost_structure_it,1,1,1,1
+access_cost_structure_other_group_user,cost.structure.other.group.user,cost_structure_it.model_cost_structure_other,group_cost_structure_it,1,1,1,1

@@ -1,0 +1,340 @@
+<odoo>
+
+    <record id="paperformat_id_test_cp" model="report.paperformat">
+            <field name="name">Papel Format</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">15</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">25</field>
+            <field name="dpi">90</field>
+    </record>
+
+    <report
+        id="sale.action_report_saleorder"
+        model="sale.order"
+        string="Presupuesto / Pedido"
+        name="report_coopsol.report_saleorder_document_it_cp"
+        report_type="qweb-pdf"
+        paperformat="report_coopsol.paperformat_id_test_cp"
+        print_report_name = "'Orden de Venta - %s' % (object.name)"
+    />
+
+    <report
+        id="sale.action_report_pro_forma_invoice"
+        model="sale.order"
+        string="Presupuesto / Pedido"
+        name="report_coopsol.report_saleorder_document_it_cp"
+        report_type="qweb-pdf"
+        paperformat="report_coopsol.paperformat_id_test_cp"
+        print_report_name = "'Orden de Venta - %s' % (object.name)"
+    />
+
+    <template id="report_saleorder_document_it_cp">
+        <t t-call="web.html_container">
+          <t t-foreach="docs" t-as="doc" >
+
+              <div class="header" />
+
+
+              <div class="footer text-center text-muted" style="font-size:12px;">
+                  <hr class="mt-4 p-0 "/>
+                       <div class="text-center">
+                             <span t-field="doc.company_id.name" class="mr-2"/>
+                             <span t-if="doc.company_id.vat" class="text-center mr-2" >RUC: <span t-field="doc.company_id.vat"/></span>
+                             <span t-if="doc.company_id.email" class="text-center mr-2" > <span t-field="doc.company_id.email"/></span>
+                             <span t-if="doc.company_id.website" class="text-center mr-2" > <span t-field="doc.company_id.website"/></span>
+
+                       </div>
+                  <hr class="m-0 p-0 "/>
+                  <center class="m-0 p-0 ">Pagina <span class="page"/> de <span class="topage"/> </center>
+              </div>
+
+            <t t-call="web.external_layout">
+                    <style>
+                        .borderx {
+                         border-color: black !important
+                        }
+                    </style>
+                    <div class="row pt-2" style="font-family: Arial;font-size:13px">
+                            <div class="col-8 pt-0">
+                                <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)"
+                                     alt="Logo" style="width: 150px; height: 80px; top: 0 ; max-height: 100px; max-width: 400px; vertical-align: baseline;"
+                                     class="mt-0 pt-0"
+                                /><br/>
+                                <span class="font-weight-bold" t-field="doc.company_id.name"/><br/>
+                                <span class="text-left" t-if="doc.company_id.vat">R.U.C. </span><span t-if="doc.company_id.vat" t-field="doc.company_id.vat"/><br t-if="doc.company_id.vat"  />
+								<!-- <span class="text-left">Direcciòn Fiscal: </span> -->
+                                <span class="text-left "  t-if="doc.company_id.partner_id.contact_address" t-field="doc.company_id.partner_id.contact_address"/><br t-if="doc.partner_id.contact_address"  />
+                                <span class="text-right" t-if="doc.company_id.email" t-field="doc.company_id.email"/><br  t-if="doc.company_id.email" />
+                                <span class="text-right" t-if="doc.company_id.phone" t-field="doc.company_id.phone"/><br  t-if="doc.company_id.phone" />
+                                <t t-if="doc.company_id.reference">
+                                    <span class="text-right" t-if="doc.company_id.reference" t-field="doc.company_id.reference"/><br />
+                                </t>
+                            </div>
+							<div class="col-4 pt-0" >
+                                <div class="text-center p-2 font-weight-bold"
+                                     style="font-size:20px; border: 1px solid gray; background-color :  rgba(188,205,197,0.30)">
+                                    <p>
+                                       <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
+                                           <span t-if="doc.state not in ['draft','sent']"  >ORDEN Nº:  </span>
+                                           <span t-if="doc.state in ['draft','sent']" >COTIZACIÓN Nº: </span>
+                                       </t>
+                                       <t t-if="env.context.get('proforma', False) or is_pro_forma">
+                                           <span>Pro-Forma Invoice # </span>
+                                       </t>
+                                        <br/>
+                                    </p>
+                                    <p style="font-size:25px">
+                                       <span t-field="doc.name"/> - <t t-esc="doc.date_order.year"/>
+                                    </p>
+                                </div>
+							</div>
+                    </div>
+
+                    <div class="page mt-4" style="background: none; font-family: Arial ;font-size:13px">
+                        <div class="oe_structure"/>
+                        <div class="row pt-2" >
+                            <div  class="col-8" >
+                                <div  class="row" >
+                                    <div  class="col-2" >
+                                        <p  class="m-0 p-0"><span class="font-weight-bold">Cliente:</span> </p>
+                                    </div>
+                                    <div  class="col-10" >
+                                        <p  class="m-0 p-0"><span  t-field="doc.partner_id.name"/></p>
+                                    </div>
+                                </div>
+                                <div  class="row" >
+                                    <div  class="col-2 " >
+                                        <p  class="m-0 p-0"><span class="font-weight-bold">RUC:</span> </p>
+                                    </div>
+                                    <div  class="col-10 " >
+                                        <p  class="m-0 p-0"><span  t-field="doc.partner_id.vat"/></p>
+                                    </div>
+                                </div>
+                                <div  class="row" >
+                                    <div  class="col-2 " >
+                                        <p  class="m-0 p-0"><span class="font-weight-bold">Dirección:</span> </p>
+                                    </div>
+                                    <div  class="col-10 " >
+                                        <p  class="m-0 p-0"><span  t-field="doc.partner_id.contact_address"/></p>
+                                    </div>
+                                </div>
+
+                                <div  class="row" >
+                                    <div  class="col-2 " >
+                                        <p  class="m-0 p-0"><span class="font-weight-bold">Proyecto: </span></p>
+                                    </div>
+                                    <div  class="col-10" >
+                                        <p  class="m-0 p-0"><span  t-field="doc.analytic_account_id"/></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div  class="row" >
+                                    <div  class="col-5 " >
+                                        <p  class="m-0 p-0"><span class="font-weight-bold">Fecha:</span> </p>
+                                    </div>
+                                    <div  class="col-7" >
+                                        <span  t-field="doc.date_order"  t-options='{"format": "dd/MM/yyyy"}' />
+                                    </div>
+                                </div>
+                                <div  class="row" >
+                                    <div  class="col-5 text-left" >
+                                        <p  class="m-0 p-0"><span class="font-weight-bold">Encargado:</span> </p>
+                                    </div>
+                                    <div  class="col-7 text-left" >
+                                        <p  class="m-0 p-0"><span  t-field="doc.contact_id"/></p>
+                                    </div>
+                                </div>
+                                <div  class="row" >
+                                    <div  class="col-4 " >
+                                        <p  class="m-0 p-0"><span class="font-weight-bold">E-mail:</span> </p>
+                                    </div>
+                                    <div  class="col-8 " >
+                                        <p  class="m-0 p-0"><span  t-field="doc.partner_id.email"/></p>
+                                    </div>
+                                </div>
+                                <div  class="row" >
+                                    <div  class="col-4 " >
+                                        <p  class="m-0 p-0"><span class="font-weight-bold">Tel.: </span></p>
+                                    </div>
+                                    <div  class="col-8 " >
+                                        <p  class="m-0 p-0"><span  t-field="doc.partner_id.phone" /></p>
+                                    </div>
+                                </div>
+                                <!--
+                                <div  class="row" >
+                                    <div  class="col-5 " >
+                                        <p  class="m-0 p-0"><span class="font-weight-bold">Vendedor: </span></p>
+                                    </div>
+                                    <div  class="col-7 " >
+                                        <p  class="m-0 p-0"><span  t-field="doc.user_id.name"/></p>
+                                    </div>
+                                </div>
+                                <div  class="row" >
+                                    <div  class="col-5 " >
+                                        <p  class="m-0 p-0"><span class="font-weight-bold">Telf : </span></p>
+                                    </div>
+                                    <div  class="col-7 " >
+                                        <p  class="m-0 p-0"><span  t-field="doc.user_id.phone"/>
+                                            <span class="ml-2 mr-2" t-if="not doc.user_id.mobile" >/</span>
+                                            <span  t-field="doc.user_id.mobile"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div  class="row" t-if="doc.user_id.email">
+                                    <div  class="col-5 " >
+                                        <p  class="m-0 p-0"><span class="font-weight-bold">E-mail : </span></p>
+                                    </div>
+                                    <div  class="col-7 " >
+                                        <p  class="m-0 p-0"><span  t-field="doc.user_id.email"/></p>
+                                    </div>
+                                </div>
+
+                                -->
+                            </div>
+                        </div>
+
+                        <!-- Is there a discount on at least one line? -->
+                        <t t-set="display_discount" t-value="any([l.discount for l in doc.order_line])"/>
+                        <table class="table mt-4 table-bordered" width="100%" >
+                            <thead >
+                                <tr t-attf-style="background-color : #{doc.company_id.color_head} !important; ">
+                                    <th  class="text-center p-1 borderx">CÒDIGO</th>
+                                    <th  class="text-center p-1 borderx">DESCRIPCIÓN</th>
+                                    <th  class="text-center p-1 borderx" >CANT.</th>
+                                    <th  class="text-center p-1 borderx">UNITARIO</th>
+                                    <!--<th  class="text-center p-1" t-if="doc.show_igv_line">IGV</th>-->
+                                    <th  class="text-center p- borderx">SUB TOTAL</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <t t-set="current_subtotal" t-value="0"/>
+                                <t t-foreach="doc.order_line" t-as="line">
+                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                                    <tr  t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                        <t t-if="not line.display_type">
+                                            <!-- <td ><span t-esc="line_index + 1" /></td> -->
+
+                                            <td class="text-right borderx">
+                                                <span t-field="line.product_id.default_code"/>
+                                            </td>
+                                            <td name="td_name" class="borderx" >
+                                                <strong><span t-field="line.name"/></strong>
+                                            </td>
+                                            <td name="td_quantity" class="text-right borderx">
+                                                <span t-field="line.product_uom_qty" t-options='{"widget": "float", "precision": 0}'/>
+                                            </td>
+                                            <td name="td_priceunit" class="text-right borderx">
+                                               <span t-field="line.price_unit"/>
+                                            </td>
+                                            <!--
+                                            <td  class="text-right" t-if="doc.show_igv_line">
+                                               <span t-field="line.price_tax"/>
+                                            </td>
+                                            -->
+                                            <td name="td_subtotal" class="text-right o_price_total borderx">
+
+                                                <span t-field="line.price_subtotal" />
+                                            </td>
+                                        </t>
+
+                                        <t t-if="line.display_type == 'line_section'">
+                                            <td name="td_section_line" colspan="5">
+                                                <span t-field="line.name"/>
+                                            </td>
+                                            <t t-set="current_section" t-value="line"/>
+                                           <t t-set="current_subtotal" t-value="0"/>
+                                        </t>
+                                        <t t-if="line.display_type == 'line_note'">
+                                            <td name="td_note_line" colspan="5">
+                                                <span t-field="line.name"/>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                    <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section')">
+                                        <tr class="is-subtotal text-right">
+                                            <td name="td_section_subtotal" colspan="5">
+                                                <strong class="mr16">Subtotal</strong>
+                                                <span t-esc="current_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+
+                                <tr class=" text-uppercase"  >
+                                            <td colspan="2" rowspan="3" style="border: 0px !important; " />
+                                            <td name="td_amount_total_label"  colspan="2" class="borderx"
+                                            t-attf-style="background-color : #{doc.company_id.color_subtotal} !important; " >
+                                                <strong>SUB TOTAL</strong></td>
+                                            <td name="td_amount_total" class="text-right borderx"
+                                            t-attf-style="background-color : #{doc.company_id.color_subtotal} !important; " >
+                                                <span t-field="doc.amount_untaxed"/>
+                                            </td>
+                                </tr>
+                                <tr class=" text-uppercase" t-attf-style="background-color : #{doc.company_id.color_subtotal} !important; " >
+                                            <td name="td_amount_total_label" colspan="2" class="borderx"
+                                            t-attf-style="background-color : #{doc.company_id.color_subtotal} !important; "
+                                            ><strong>Impuestos</strong></td>
+                                            <td name="td_amount_total" class="text-right borderx"
+                                            t-attf-style="background-color : #{doc.company_id.color_subtotal} !important; " >
+                                                <span t-field="doc.amount_tax"/>
+                                            </td>
+                                </tr>
+
+                                <tr>
+
+                                            <td colspan="2" class="borderx"
+                                                t-attf-style="background-color : #{doc.company_id.color_subtotal} !important; "><strong>Total</strong></td>
+                                            <td name="td_amount_total" class="text-right borderx"
+                                                t-attf-style="background-color : #{doc.company_id.color_subtotal} !important; ">
+                                                <span t-field="doc.amount_total"/>
+                                            </td>
+                                </tr>
+                                <tr><td colspan="5" style="border: 0px !important; " /></tr>
+
+                                <tr class="text-uppercase borderx" t-attf-style="background-color : #{doc.company_id.color_section} !important; " >
+                                    <td colspan="5" class="borderx"><strong>NUMERO DE CUENTA DE DETRACCION:<span t-field="doc.acc_number_it.acc_number"/></strong> </td>
+                                </tr>
+                                <tr class="text-uppercase borderx" t-attf-style="background-color : #{doc.company_id.color_section} !important; " >
+                                    <td colspan="5" class="borderx"><strong><span t-field="doc.account_bank"/></strong> </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                        <p t-field="doc.note" class="m-0 p-0" />
+
+
+                        <div class="container pt-2" t-if="doc.company_id.presentation">
+                                <div>Atte:</div>
+                                <div>
+                                    <img  t-att-src="image_data_uri(doc.company_id.presentation)"
+                                             alt="Logo" style="max-width: 350px;" />
+                                </div>
+
+
+                        </div>
+
+
+                         <br/>
+
+                    </div>
+            </t>
+
+
+          </t>
+        </t>
+    </template>
+
+
+
+</odoo>

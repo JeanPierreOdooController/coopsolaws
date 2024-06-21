@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_partner_bank_form_coopsol_inherit" model="ir.ui.view">
+			<field name="name">res.partner.bank.coopsol.inherit</field>
+			<field name="model">res.partner.bank</field>
+			<field name="inherit_id" ref="base.view_partner_bank_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='acc_number']" position="after">
+					<field name="cci"/>
+					<field name="is_account_detraction"/>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

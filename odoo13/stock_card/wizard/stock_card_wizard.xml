@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="stock_card_wizard_form" model="ir.ui.view">
+        <field name="name">stock.card.wizard.form</field>
+        <field name="model">stock.card.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Excel Report">
+                <group>
+                    <group>
+
+                        <field name="location_id" required="1"/>
+                        <field name="product_id" required="1"/>
+                        <field name="start_date" required="1"/>
+                        <field name="end_date" required="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print_xls_report" string="Export" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

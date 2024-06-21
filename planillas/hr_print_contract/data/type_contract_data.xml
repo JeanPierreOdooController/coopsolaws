@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="contract_type_1" model="hr.contract.type">
+            <field name="name">SUJETO A MODALIDAD</field>
+            <field name="contract_html">
+                <p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: center; ">
+<b style="box-sizing:border-box;font-weight:500;">CONTRATO DE TRABAJO SUJETO A MODALIDAD (CARGO DE CONFIANZA)</b>
+</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: center; ">
+<b style="box-sizing:border-box;font-weight:500;">
+    <span style="color:#000000;font-size: inherit; font-style: inherit; font-variant-ligatures: inherit; font-variant-caps: inherit; text-align: inherit;"></span>
+</b><br/>
+</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">
+Conste por el presente documento, el Contrato de Trabajo Sujeto a Modalidad por Necesidad del Mercado, que celebran, de una parte,
+<span style="color:#000000;font-size: 12px; text-align: left;">{{nombre_empleador}}</span>, con RUC Nº
+<span style="color:#000000;font-size: 12px; text-align: left;">{{ruc_empleador}}</span>, con domicilio en
+<span style="color:#000000;font-size: 12px; text-align: left;">{{direccion_empleador}}</span>, debidamente representada por su Gerente General, Sr.
+<span style="color:#000000;font-size: 12px; text-align: left;">{{apoderado}}</span>, identificado con
+<span style="color:#000000;font-size: 12px; text-align: left;">DNI</span> N° <span style="color:#000000;font-size: 12px; text-align: left;">{{dni_apoderado}}</span>,
+a quien en adelante se denominará EL EMPLEADOR; y de la otra parte, <span style="color:#000000;font-size: 12px; text-align: left;"> {{nombre_trabajador}}</span>,  identificado con 
+<span style=" font-size: 12px">{{td_trabajador}}</span>
+Nº <span style="color:#000000;font-size: 12px; text-align: left;">{{dni_trabajador}}</span>, con domicilio en
+<span style="color:#000000;font-size: 12px; text-align: left;">{{direccion_trabajador}}</span>, a quien en adelante se denominará EL TRABAJADOR;
+en los términos y condiciones siguientes:</p><p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; "><br/></p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">PRIMERO: ANTECEDENTES</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">EL EMPLEADOR es una es una sociedad anónima debidamente
+constituida bajo las leyes de la República del Perú, que se dedica, entre otras actividades, a la prestación de Servicios Públicos
+de Telecomunicaciones, en la modalidad de Internet Dedicado y otros servicios de valor añadido; para ello, cuenta con los títulos
+habilitantes y licencias otorgadas por el Estado Peruano. </p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">Habiendo puesto en funcionamiento, entre setiembre de 2018
+y noviembre de 2019, 620 kilómetros de redes nuevas de fibra óptica que cobertura la zona de Lima; y teniendo en consideración el incremento
+de la demanda de banda ancha, por mejora tecnológica y obsolescencia de  equipos, es necesaria la captación de 500 nuevos abonados en
+los servicios  que presta EL EMPLEADOR; y que fueron previstos en el plan de crecimiento y expansión de la empresa para el año 2019-2020;
+en ese sentido, para el cumplimiento de la meta trazada, se requiere contratar un trabajador profesional capacitado para desempeñarse en
+el cargo de
+<span style=" font-size: 12px">{{titulo_trabajo}}</span>; el puesto por el que se contrata se condice con el de personal de confianza;
+en tanto y en cuanto, en el ejercicio de sus labores mantendrá contacto directo con el empleador o con el personal de dirección de éste;
+asimismo,  tendrá acceso a información confidencial; y, coadyuvará a la toma de decisiones por parte del empleador o del referido
+personal de dirección; también, realizará labores de fiscalización de carácter general.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">EL TRABAJADOR es un profesional que cuenta con la capacidad
+y experiencia requerida para la prestación de los servicios materia del Contrato y declara estar calificado para el puesto ofrecido,
+asumiendo las obligaciones y responsabilidades propias del cargo asignado. EL TRABAJADOR declara conocer dichas obligaciones,
+comprometiéndose a cumplir con ellas.</p><p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; "><br/></p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">SEGUNDO: OBJETO DEL CONTRATO</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">Por medio del presente instrumento, EL EMPLEADOR contrata
+a EL TRABAJADOR a partir del 
+<span style="color:#000000;font-size: 12px; text-align: left;">{{fecha_inicio}}</span> hasta el
+<span style="color:#000000;font-size: 12px; text-align: left;">{{fecha_fin}}</span>, para que labore ocupando el puesto de
+<span style="color:#000000;font-size: 12px; text-align: left;">{{titulo_trabajo}}</span>, en el departamento de Lima; y, de acuerdo
+a lo señalado en la cláusula primera.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; "><br/></p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">TERCERO: CALIFICACIÓN DEL CARGO</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">EL TRABAJADOR, en su condición de
+<span style="color:#000000;font-size: 12px; text-align: left;">{{titulo_trabajo}}</span>,
+poseerá funciones como brindar un óptimo servicio de los sistemas y servicios como asistir a la gerencia administrativa a fin de
+satisfacer las necesidades y expectativas de negocio de la empresa. Sus funciones y responsabilidades, 
+<span style="color:#000000;font-size: 12px; font-style: inherit; font-variant-ligatures: inherit; font-variant-caps: inherit; font-weight: inherit; text-align: inherit;">{{funciones_empleado}}</span>
+<span style="color:#000000;font-style: inherit; font-variant-ligatures: inherit; font-variant-caps: inherit; font-weight: inherit;">.</span></p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; "><br/></p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">En esa medida, EL EMPLEADOR califica el puesto de
+trabajo de EL TRABAJADOR como de confianza, en aplicación de los artículos 43° del Decreto Supremo N° 003-97-TR y 59 del
+Decreto Supremo N° 001-96-TR. Tal condición se consignará en el libro de planillas y boletas de pago.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; "><br/></p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">CUARTO: REMUNERACIÓN</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">En el desarrollo de la relación laboral, EL EMPLEADOR,
+pagará a EL TRABAJADOR una remuneración mensual ascendente a 
+<span style="color:#000000;font-size: 12px; text-align: left;">{{salario}}</span>, y será abonada el último día hábil de cada mes.
+El importe por concepto de remuneración será abonado en la cuenta bancaria que EL TRABAJADOR determine.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">Asimismo, EL EMPLEADOR proporcionará a EL TRABAJADOR
+los materiales y condiciones de trabajo necesarios para la adecuada prestación de sus labores, y le otorgará los beneficios que
+por ley le corresponden.</p><p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; "><br/></p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">QUINTO: OBLIGACIONES DEL TRABAJADOR</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">En el desarrollo de la relación laboral, EL TRABAJADOR:</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">a)<span style="white-space:pre">	</span>
+Se compromete a cumplir sus obligaciones con lealtad y eficiencia, aplicando para tal fin toda su experiencia y capacidad,
+y velando por los intereses de EL EMPLEADOR. Asimismo, deberá ejercer las funciones propias de su cargo con la mayor diligencia
+y responsabilidad.</p><p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">b)<span style="white-space:pre"> </span>
+Se compromete, igualmente, a mantener en secreto toda información que llegue a su conocimiento en relación a los negocios
+de EL EMPLEADOR, sus asociados y/o clientes. Esta obligación subsistirá aun después de terminada la relación laboral y su
+incumplimiento genera la correspondiente responsabilidad por daños y perjuicios, sin desmedro de la persecución penal por
+el delito previsto en el artículo 165 del Código Penal.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">c)<span style="white-space:pre">	</span>
+En virtud del presente contrato, EL TRABAJADOR tendrá acceso a información confidencial, la misma que es propiedad de EL EMPLEADOR.
+Del mismo modo, es obligación de EL TRABAJADOR informar a EL EMPLEADOR de todo aquello que constituya trabajo fuera de las horas
+de trabajo, siempre que se refiera a la actividad u operación de EL EMPLEADOR, incluyendo denuncias, robos, hurtos, accidentes
+y/o cualquier hecho o circunstancia que se relacione con la buena marcha y funcionamiento de la empresa.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">d)<span style="white-space:pre">	</span>
+El horario de trabajo se establecerá de acuerdo a las necesidades de EL EMPLEADOR y no podrá exceder de las 48 horas semanales.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">e)<span style="white-space:pre">	</span>
+En relación con los medios de trabajo proporcionados por EL EMPLEADOR, en especial medios informáticos y medios telemáticos,
+reconoce y admite expresamente que son propiedad de EL EMPLEADOR y han de ser utilizadas para fines profesionales exclusivamente,
+por lo que EL EMPLEADOR sin necesidad de consulta o requerimiento alguno, tendrá acceso en todo momento a toda la información
+que contengan las computadoras.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; "><br/></p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">SEXTO: CLÁUSULA DE CONFIDENCIALIDAD</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">Sobre la información que le proporcione EL EMPLEADOR
+al TRABAJADOR, en virtud del presente contrato, ya sea de forma oral, gráfica, escrita, digital o telemática, sea o no contenida
+en el “Plan de Negocios o ventas y/o cartera de clientes” o en cualquier otro tipo de documento, EL TRABAJADOR se obliga a mantener
+la más estricta confidencialidad respecto de dicha información; por lo que no podrá, reproducir, modificar, hacer pública o divulgar
+a terceros, sin previa autorización escrita y expresa de EL EMPLEADOR; así mismo, adoptará respecto de la información objeto de
+esta cláusula, la diligencia debida y  las medidas de seguridad para evitar su posible pérdida, robo o sustracción; con
+excepción de lo siguiente:</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">a)<span style="white-space:pre">	</span>
+Cuando la información se encuentre en el dominio público al momento de su suministro al TRABAJADOR.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">b)<span style="white-space:pre">	</span>
+Cuando la información ya estuviera en el conocimiento del TRABAJADOR, con anterioridad a la firma del presente CONTRATO y
+sin obligación de guardar confidencialidad.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">c)<span style="white-space:pre">	</span>
+Cuando por mandato imperativo de autoridad administrativa, o mandato judicial, exija su divulgación. En este caso, EL
+TRABAJADOR notificará a EL EMPLEADOR tal eventualidad y hará todo lo posible por garantizar se dé un tratamiento
+confidencial a la información.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">d)<span style="white-space:pre">	</span>
+En caso de que EL TRABAJADOR pueda probar que la información fue desarrollada o recibida legítimamente de terceros, de forma
+totalmente independiente a su relación con EL EMPLEADOR.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">En caso de que la información resulte revelada o
+divulgada o utilizada por EL TRABAJADOR, de cualquier forma, distinta al objeto de esta cláusula, ya sea de forma dolosa o
+por mera negligencia, habrá de indemnizar a EL EMPLEADOR los daños y perjuicios ocasionados, sin perjuicio de las acciones
+civiles o penales que puedan corresponder por derecho a EL EMPLEADOR.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">EL TRABAJADOR, se obliga a devolver cualquier
+documentación, facilitada en cualquier tipo de soporte y, en su caso, las copias obtenidas de los mismos, que constituyan
+información amparada por el deber de confidencialidad, en el supuesto que cese la relación laboral, entre las partes,
+por cualquier motivo.</p><p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">Esta cláusula de
+confidencialidad extenderá su vigencia hasta un plazo de 02 (dos) años, después de finalizada la relación entre las partes o,
+en su caso, la prestación del servicio. </p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">Sin perjuicio de la cuantificación del daño causado
+a EL EMPLEADOR, en las instancias correspondientes, frente a una eventual vulneración o infracción de esta cláusula de confidencialidad,
+EL TRABAJADOR pagará a EL EMPLEADOR el equivalente a 15 unidades impositivas tributarias (UIT), por concepto de penalidad.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; "><br/></p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">SÉTIMO: DECLARACIÓN DEL TRABAJADOR</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">EL TRABAJADOR declara que entiende la naturaleza temporal
+de su prestación de servicios, la cual se relaciona con el incremento de actividades de EL EMPLEADOR, y se rige por la normatividad
+aplicable a los contratos sujetos a modalidad prevista en el Título II del Texto Único Ordenado del Decreto Legislativo N° 728,
+Ley de Productividad y Competitividad Laboral, aprobado mediante Decreto Supremo N° 003-97-TR.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; "><br/></p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">OCTAVO: APLICACIÓN SUPLETORIA</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">En todo lo no previsto por el presente Contrato de
+Trabajo Sujeto a Modalidad por Necesidad del Mercado, se aplicará lo dispuesto en la legislación laboral vigente.</p>
+<p style="margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; ">Ambas partes suscriben el presente documento en
+duplicado y en señal de conformidad en Lima, el <span style="color:#000000;font-size: 12px; text-align: left;"> {{fecha_inicio}}</span>.</p>
+<p style="caret-color:#37352f;position:relative;margin:0px 0 12px 0;box-sizing:border-box;text-align: justify; "><br/></p>
+            </field>
+        </record>
+
+<!--        <record id="contract_type_2" model="hr.contract.type">-->
+<!--            <field name="name">INCREMENTO DE ACTIVIDAD</field>-->
+<!--            <field name="contract_html">-->
+<!--            </field>-->
+<!--        </record>-->
+    </data>
+</odoo>

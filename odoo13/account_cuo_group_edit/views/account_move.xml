@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_account_move_form_inherit_cuo_user" model="ir.ui.view">
+        <field name="name">account.move.inherit.form.cuo.user</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account_fields_it.view_move_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@id='aml_tab']/field[@name='line_ids']/tree/field[@name='cuo']" position="replace">
+                <field name="cuo" optional="hide" groups="account_cuo_group_edit.group_edit_cuo_user"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

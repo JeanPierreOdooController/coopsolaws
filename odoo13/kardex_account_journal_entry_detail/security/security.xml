@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="consumption_analysis_book_detail_user_report_rule" model="ir.rule">
+            <field name="name">Analisis Consumo detalle por Usuario</field>
+            <field ref="model_consumption_analysis_book_detail" name="model_id"/>
+            <field eval="True" name="global"/>
+            <field name="domain_force">[('user_id','=',user.id)]</field>
+        </record>
+
+        
+        <record id="costs_sales_analysis_book_detail_user_report_rule" model="ir.rule">
+            <field name="name">Analisis Costo de Ventas detalle por Usuario</field>
+            <field ref="model_costs_sales_analysis_book_detail" name="model_id"/>
+            <field eval="True" name="global"/>
+            <field name="domain_force">[('user_id','=',user.id)]</field>
+        </record>
+
+    </data>
+</odoo>

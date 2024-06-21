@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+        <record id="actualizar_vencimiento_ventas" model="ir.cron">
+            <field name="name">Validar Pedido de Ventas Vencidas</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">model._fecha_limite_vencidas()</field>
+            <field name='interval_number'>1</field>
+            <field name='interval_type'>days</field>
+            <!--field name="active" eval="False"/-->
+            <field name="user_id" ref="base.user_root"/>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 00:00:00')"/>
+        </record>
+
+
+		<record id="view_product_template_form_inherit_onu" model="ir.ui.view">
+			<field name="name">product.template.inherit.onu</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_form_view"/>
+			<field name="arch" type="xml">
+				<field name="categ_id" position="after">
+					<field name="modelo"/>
+					<field name="familia"/>
+				</field>
+			</field>
+		</record>
+	</data>
+</odoo>

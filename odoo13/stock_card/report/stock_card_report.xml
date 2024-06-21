@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <report
+            id="card_report_xls"
+            model="stock.card.wizard"
+            string="Account Excel Report"
+            report_type="xlsx"
+            name="stock_card.card_report_xls.xlsx"
+            file="stock_card.card_report_xls.xlsx"
+            menu="False"
+            attachment_use="False"/>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_move_tree_inherit_compute_reconcile" model="ir.ui.view">
+		<field name="name">move.tree.inherit.compute.reconcile</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account.view_invoice_tree"/>
+		<field name="arch" type="xml">
+			<field name="amount_residual_signed" position="after">
+				<field name="invoice_has_outstanding_it" optional="hide"/>
+			</field>
+		</field>
+	</record>
+
+    <record id="view_account_invoice_filter_inherit_compute" model="ir.ui.view">
+        <field name="name">account.invoice.select.inherit.compute</field>
+        <field name="inherit_id" ref="account_fields_it.view_account_invoice_filter_inherit"/>
+        <field name="model">account.move</field>
+        <field name="arch" type="xml">
+            <xpath expr="/search/group/filter[@name='type_document_id']" position="after">
+                <separator/>
+                <filter name="invoice_has_outstanding_it" string="Tiene Pendientes" context="{'group_by': 'invoice_has_outstanding_it'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

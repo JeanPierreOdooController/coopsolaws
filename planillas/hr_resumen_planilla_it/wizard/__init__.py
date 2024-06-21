@@ -1,0 +1,1 @@
+from. import hr_planilla_tabular_wizard

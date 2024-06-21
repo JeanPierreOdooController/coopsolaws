@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_move_form_inherit" model="ir.ui.view">
+			<field name="name">move.form.inherit</field>
+			<field name="model">account.move</field>
+			<field name="inherit_id" ref="account_fields_it.view_move_form_inherit"/>
+			<field name="arch" type="xml">
+				<data>
+					<xpath expr="//notebook/page[@id='aml_tab']/field[@name='line_ids']/tree/field[@name='cuo']" position="after">
+						<field name="cash_flow_id" optional="hide"/>
+					</xpath>
+				</data>
+			</field>
+		</record>
+	</data>
+</odoo>

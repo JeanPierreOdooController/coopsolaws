@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_main_parameter_sale_form" model="ir.ui.view">
+		<field name="name">main.parameter.sale.form</field>
+		<field name="model">main.parameter.sale</field>
+		<field name="arch" type="xml">
+			<form string="Main Parameter Sale">
+				<sheet>
+					<group>
+						<field name="company_id" readonly="1" required="1" groups="base.group_multi_company"/>
+					</group>
+					<notebook>
+						<page string="Cotizaciones por Producto">
+							<group string="Cotizacion por Producto">
+								<group>
+									<field name="quotation_manager"/>
+								</group>
+								<group>
+									<field name="function_manager"/>
+								</group>
+								<group>
+									<field name="width_product" required="1"/>
+									<field name="height_product" required="1"/>
+								</group>
+							</group>
+						</page>
+						<page string="Cotizaciones de Venta">
+							<group string="Colores de Cotizacion">
+								<group>
+									<field name="color_service" widget="color"/>
+									<field name="color_head" widget="color"/>
+								</group>
+								<group>
+									<field name="color_section" widget="color"/>
+									<field name="color_subtotal" widget="color"/>
+								</group>
+							</group>
+							<group string="Tamaño de Logo">
+								<group>
+									<field name="width" required="1"/>
+								</group>
+								<group>
+									<field name="height" required="1"/>
+								</group>
+							</group>
+							<group string="Tarjeta de Jefe de Ventas">
+								<field name="presentation" widget="image" class="oe_avatar"/>
+							</group>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="view_main_parameter_sale_list" model="ir.ui.view">
+		<field name="name">main.parameter.sale.list</field>
+		<field name="model">main.parameter.sale</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+				<field name="company_id"/>
+			</tree>
+		</field>
+	</record>
+	<record id="action_main_parameter_sale_form" model="ir.actions.act_window">
+		<field name="name">Parametros Principales</field>
+		<field name="res_model">main.parameter.sale</field>
+		<field name="view_mode">tree,form</field>
+		<field name="view_id" ref="view_main_parameter_sale_list"/>
+		<field name="help" type="html">
+		  <p class="o_view_nocontent_smiling_face">
+			Crea tu primera tabla de Parametros Principales Ventas aqui
+		  </p>
+		</field>
+	</record>
+
+	<menuitem action="action_main_parameter_sale_form" 
+				id="menu_action_main_parameter_sale_form" 
+				parent="sale.menu_sale_config" 
+				sequence="50" 
+				groups="sales_team.group_sale_manager"/>
+</odoo>

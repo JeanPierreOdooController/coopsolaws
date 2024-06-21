@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bank_statement_form_inherit_budget" model="ir.ui.view">
+        <field name="name">bank.statement.form.inherit.budget</field>
+        <field name="model">account.bank.statement</field>
+        <field name="inherit_id" ref="account.view_bank_statement_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//page[@name='statement_line_ids']//field[@name='line_ids']//tree/field[@name='amount']" position="after">
+                    <field name="account_cash_flow_id" optional="hide" force_save="1"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_account_search_inherit" model="ir.ui.view">
+        <field name="name">account.account.search.inherit</field>
+        <field name="inherit_id" ref="account.view_account_search"/>
+        <field name="model">account.account</field>
+        <field name="arch" type="xml">
+            <xpath expr="/search/filter[@name='used']" position="after">
+                <filter string="Cuenta activa" name="activeacc" domain="[('deprecated', '=', False)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account.action_account_form" model="ir.actions.act_window">
+        <field name="context">{'search_default_activeacc': True}</field>
+    </record>
+</odoo>

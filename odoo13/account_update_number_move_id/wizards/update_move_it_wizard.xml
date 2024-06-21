@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<odoo>
+	<data>
+		<record id="view_update_move_it_wizard_form" model="ir.ui.view">
+		<field name="name">update.move.it.wizard.form</field>
+		<field name="model">update.move.it.wizard</field>
+		<field name="arch" type="xml">
+			<form string="Actualizar Voucher">
+			<sheet>
+				<group>
+					<group>
+						<field name="name_file" invisible="1"/>
+						<field name="document_file" filename="name_file" string="Excel"/>
+					</group>
+				</group>
+			</sheet>
+			<footer>
+				<button name="importar" string="Actualizar" icon="fa-download" type="object" class="btn-primary oe_inline" style="font-size: 12px;line-height: 1.5;border-radius: 3px;padding: 8px 10px;color: #FFFFFF;"/>
+				o
+				<button string="Cancelar" class="oe_link" special="cancel"/>
+
+				<div style="float:right;">
+					<strong>Download Sample:  </strong>
+					<button name="download_template" string="Descargar Plantilla" style="font-size: 12px;line-height: 1.5;border-radius: 3px;padding: 8px 10px;color: #FFFFFF;" icon="fa-download" type="object" class="btn-primary oe_inline"/>
+				</div>
+			</footer>
+			</form>
+		</field>
+		</record>
+
+		<record id="update_move_it_wizard_action" model="ir.actions.act_window">
+			<field name="name">Actualizar Voucher</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">update.move.it.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem action="update_move_it_wizard_action" 
+				  id="menu_update_move_it_wizard" 
+				  parent="import_journal_entry_it.menu_account_import_master" 
+				  sequence="70"/>
+	
+	</data>
+</odoo>

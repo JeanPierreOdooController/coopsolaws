@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_move_form_inherit_by_currency" model="ir.ui.view">
+		<field name="name">move.form.inherit.by.currency</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account_fields_it.view_move_form_inherit"/>
+		<field name="arch" type="xml">
+			<data>
+				<xpath expr="//notebook/page[@id='other_tab']/group/group/field[@name='date_corre_ple']" position="after">
+					<field name="use_account_partner_it" attrs="{'readonly': [('state','!=','draft')]}"/>
+				</xpath>
+			</data>
+		</field>
+	</record>
+</odoo>

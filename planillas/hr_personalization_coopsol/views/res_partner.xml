@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_partner_form_inherit_nominas" model="ir.ui.view">
+			<field name="name">res.partner.form.inherit.nominas</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="account_fields_it.view_partner_form_inherit"/>
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="inside">
+					<page name="nominas" string="Tasas Nominas">
+						<group>
+							<group string="TASAS SCTR SALUD">
+								<field name="tasa_sctr_sal_emp" widget="percentage"/>
+								<field name="tasa_sctr_sal_obr" widget="percentage"/>
+							</group>
+							<group string="TASAS VIDA LEY">
+								<field name="tasa_vida_emp" widget="percentage"/>
+								<field name="tasa_vida_obr" widget="percentage"/>
+							</group>
+							<group string="TASAS SCTR PENSION">
+								<field name="tasa_sctr_pen_emp" widget="percentage"/>
+								<field name="tasa_sctr_pen_obr" widget="percentage"/>
+							</group>
+						</group>
+					</page>
+				</xpath>
+			</field>
+		</record>
+
+		<menuitem
+				id="hr_payroll.menu_hr_payroll_configuration"
+				name="Configuracion"
+				parent="hr_payroll.menu_hr_payroll_root"
+				sequence="100"
+				groups="hr_personalization_coopsol.group_hr_see_payroll_configuration"/>
+	</data>
+</odoo>

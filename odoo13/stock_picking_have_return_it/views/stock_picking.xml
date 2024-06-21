@@ -1,0 +1,14 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_picking_distpatch_line_filter_form">
+			<field name="name">picking.distpatch.line.filter.form</field>
+			<field name="model">picking.distpatch.line</field>
+			<field name='inherit_id' ref="picking_distpatch_it.view_picking_distpatch_line_form"/>
+			<field name="arch" type="xml">
+				<field name="detalle_id" position="attributes">
+					<attribute name="domain">[('state','in',['done']),('picking_type_id.code','=','outgoing'),('invoice_id','!=',False),('picking_distpatch_id','=',False),('have_return','=',False)]</attribute>
+				</field>
+			</field>
+		</record>
+	</data>
+</odoo>

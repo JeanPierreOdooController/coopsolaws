@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_update_tc_move_line_wizard_form" model="ir.ui.view">
+        <field name="name">update.tc.move.line.wizard.form</field>
+        <field name="model">update.tc.move.line.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <p>Este asistente le ayudará a actualizar el TC en sus apuntes contables en Moneda Extranjera</p>
+                <group>
+                    <group string="Periodo">
+                        <field name="period_id" required="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="update_lines" string="Actualizar" type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_update_tc_move_line_wizards" model="ir.actions.act_window">
+        <field name="name">Regularizar Tipos de Cambio</field>
+        <field name="res_model">update.tc.move.line.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_update_tc_move_line_wizard"
+              parent="account_consistencia_rep_it.menu_account_consistency_report"
+              action="action_update_tc_move_line_wizards"
+              sequence="10"/>
+</odoo>

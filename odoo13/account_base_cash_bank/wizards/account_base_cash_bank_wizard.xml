@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_account_base_cash_bank_wizard_form">
+			<field name="name">account.base.cash.bank.wizard.form</field>
+			<field name="model">account.base.cash.bank.wizard</field>
+			<field name="arch" type="xml">
+				<form>
+					<group>
+						<group>
+							<field name="company_id"/>
+							<field name="exercise"/>
+							<field name="date_ini"/>
+							<field name="date_end"/>
+						</group>
+					</group>
+					<footer>
+						<button string="Mostrar" name="get_excel" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="account_base_cash_bank_wizard_action" model="ir.actions.act_window">
+			<field name="name">Movimientos de Caja y Banco</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.base.cash.bank.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem action="account_base_cash_bank_wizard_action" 
+		id="menu_action_account_base_cash_bank_wizard" 
+		parent="account_report_menu_it.menu_account_report_it" 
+		sequence="97"/>
+	</data>
+</odoo>

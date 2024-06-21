@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_states_herencia" model="ir.ui.view">
+            <field name="name">res.country.state.form</field>
+            <field name="model">res.country.state</field>
+            <field name="inherit_id" ref="base.view_country_state_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='country_id']" position="after">
+                    <field name="show_ecommerce" />
+               </xpath>
+            </field>
+    </record>
+
+
+    <record id="multi_active_provincias" model="ir.actions.server">
+			<field name="name">Activar Ecommerce</field>
+			<field name="model_id" ref="portal_select_address_js_it.model_res_country_state" />
+			<field name="binding_model_id" ref="portal_select_address_js_it.model_res_country_state" />
+			<field name="state">code</field>
+			<field name="code">action = records.active_ecommerce()</field>
+    </record>
+
+    <record id="multi_des_provincias" model="ir.actions.server">
+			<field name="name">Desactivar ecommerce</field>
+			<field name="model_id" ref="portal_select_address_js_it.model_res_country_state" />
+			<field name="binding_model_id" ref="portal_select_address_js_it.model_res_country_state" />
+			<field name="state">code</field>
+			<field name="code">action = records.disabled_ecommerce()</field>
+    </record>
+
+
+    <record id="res_paises" model="ir.ui.view">
+            <field name="name">res.country.form</field>
+            <field name="model">res.country</field>
+            <field name="inherit_id" ref="base.view_country_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='code']" position="after">
+                    <field name="show_ecommerce" />
+               </xpath>
+            </field>
+    </record>
+
+
+    <record id="multi_active_provincias_conutry" model="ir.actions.server">
+			<field name="name">Activar Ecommerce</field>
+			<field name="model_id" ref="portal_select_address_js_it.model_res_country" />
+			<field name="binding_model_id" ref="portal_select_address_js_it.model_res_country" />
+			<field name="state">code</field>
+			<field name="code">action = records.active_ecommerce()</field>
+    </record>
+
+    <record id="multi_des_provincias_country" model="ir.actions.server">
+			<field name="name">Desactivar ecommerce</field>
+			<field name="model_id" ref="portal_select_address_js_it.model_res_country" />
+			<field name="binding_model_id" ref="portal_select_address_js_it.model_res_country" />
+			<field name="state">code</field>
+			<field name="code">action = records.disabled_ecommerce()</field>
+    </record>
+
+
+
+    <record id="action_paises" model="ir.actions.act_window">
+        <field name="name">Pais</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.country</field>
+        <field name="view_mode">tree,form</field>
+  </record>
+
+
+    <menuitem id="menu_paises_partner"
+        action="action_paises"
+        parent="contacts.menu_localisation"
+       />
+
+
+
+</odoo>

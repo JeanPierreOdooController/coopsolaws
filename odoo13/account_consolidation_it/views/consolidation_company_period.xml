@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="consolidation_period_form_inherit" model="ir.ui.view">
+		<field name="name">consolidation.period.form.inherit</field>
+		<field name="model">consolidation.period</field>
+		<field name="inherit_id" ref="account_consolidation.consolidation_period_form"/>
+		<field name="arch" type="xml">
+			<data>
+				<xpath expr="//notebook/page/field[@name='company_period_ids']/tree/field[@name='currency_rate_avg']" position="after">
+					<field name="currency_rate_avg_purchase" optional="show"/>
+				</xpath>
+                <xpath expr="//notebook/page/field[@name='company_period_ids']/tree/field[@name='currency_rate_end']" position="after">
+					<field name="currency_rate_end_purchase" optional="show"/>
+				</xpath>
+                <xpath expr="//notebook/page/field[@name='company_period_ids']/tree/field[@name='currency_rate_avg']" position="attributes">
+					<attribute name="string">Pro Ventas</attribute>
+				</xpath>
+                <xpath expr="//notebook/page/field[@name='company_period_ids']/tree/field[@name='currency_rate_end']" position="attributes">
+					<attribute name="string">Cierre Ventas</attribute>
+				</xpath>
+			</data>
+		</field>
+	</record>
+</odoo>

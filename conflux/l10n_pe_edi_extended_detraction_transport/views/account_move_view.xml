@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_move_form" model="ir.ui.view">
+            <field name="model">account.move</field>
+            <field name="name">account.move.form.l10n_pe_edi_detraction_transport</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+                <page name="pe_electronic_invoice" position="inside">
+                    <group string="Detracción - Servicio de transporte de carga (027)">
+                        <field name="l10n_pe_dte_dettran_origin_address_id"/>
+                        <field name="l10n_pe_dte_dettran_delivery_address_id"/>
+                        <field name="l10n_pe_dte_dettran_val_ref_serv_trans"/>
+                        <field name="l10n_pe_dte_dettran_val_ref_carga_efec"/>
+                        <field name="l10n_pe_dte_dettran_val_ref_carga_util"/>
+                        <field name="l10n_pe_dte_dettran_detalle_viaje"/>
+                    </group>
+                </page>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="group_sale_analysis_it" model="res.groups">
+			<field name="name">Analisis de Ventas</field>
+			<field name="category_id" ref="base.module_category_hidden"/>
+		</record>
+	</data>
+</odoo>

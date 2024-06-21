@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_cost_structure_it_form" model="ir.ui.view">
+			<field name="name">cost.structure.it.form</field>
+			<field name="model">cost.structure.it</field>
+			<field name="arch" type="xml">
+				<form string="Estructura de Costos">
+					<header>
+						<button name="print_cost_structure" type="object" string="Imprimir" class="oe_highlight"/>
+					</header>
+					<group class="oe_title">
+						<h1>
+							<field name="name" readonly="1"/>
+						</h1>
+					</group>
+					<group>
+						<group>
+							<field name="partner_id" required="1"/>
+							<field name="date"/>
+						</group>
+						<group>
+							<field name="company_id" readonly="1" required="1" groups="base.group_multi_company"/>  
+						</group>
+					</group>
+					<notebook>
+						<page string="Remuneracion">
+							<field name="remuneration_line_ids">
+								<tree editable="bottom" create="false" delete="false">
+									<field name="currency_id" invisible="1"/>
+									<field name="name"/>
+									<field name="price_unit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+									<field name="quantity"/>
+									<field name="subtotal" widget="monetary" options="{'currency_field': 'currency_id'}" sum="subtotal"/>
+								</tree>
+							</field>
+						</page>
+						<page string="Beneficios Sociales">
+							<field name="social_benefit_line_ids">
+								<tree editable="bottom" create="false" delete="false">
+									<field name="currency_id" invisible="1"/>
+									<field name="name"/>
+									<field name="percentage"/>
+									<field name="subtotal" widget="monetary" options="{'currency_field': 'currency_id'}" sum="subtotal"/>
+								</tree>
+							</field>
+						</page>
+						<page string="Logistica">
+							<field name="logistic_line_ids">
+								<tree editable="bottom" create="false" delete="false">
+									<field name="currency_id" invisible="1"/>
+									<field name="name"/>
+									<field name="price_unit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+									<field name="quantity"/>
+									<field name="subtotal" widget="monetary" options="{'currency_field': 'currency_id'}" sum="subtotal"/>
+								</tree>
+							</field>
+						</page>
+						<page string="Otros">
+							<field name="other_line_ids">
+								<tree editable="bottom" create="false" delete="false">
+									<field name="currency_id" invisible="1"/>
+									<field name="name"/>
+									<field name="price_unit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+									<field name="quantity"/>
+									<field name="subtotal" widget="monetary" options="{'currency_field': 'currency_id'}" sum="subtotal"/>
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_cost_structure_it_tree" model="ir.ui.view">
+			<field name="name">cost.structure.it.tree</field>
+			<field name="model">cost.structure.it</field>
+			<field name="arch" type="xml">
+				<tree string="Estructura de Costos">
+					<field name="name"/>
+					<field name="company_id" groups="base.group_multi_company"/>  
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_cost_structure_it" model="ir.actions.act_window">
+			<field name="name">Estructura de Costos</field>
+			<field name="res_model">cost.structure.it</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="view_cost_structure_it_tree"/>
+			<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				Crea tu primera Tabla de Estructura de Costos aqui
+			</p>
+			</field>
+		</record>
+
+		<menuitem action="action_cost_structure_it" 
+				  id="menu_cost_structure_it" 
+				  parent="sale.sale_order_menu"
+				  sequence="5"
+				  groups="cost_structure_it.group_cost_structure_it"/>
+	</data>
+</odoo>

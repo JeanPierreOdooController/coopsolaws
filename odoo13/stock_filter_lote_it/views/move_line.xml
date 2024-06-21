@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_picking_form_inherit_stock_change_lote_it" model="ir.ui.view">
+        <field name="name">stock.picking.view.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <field name="tipo_operacion_temp" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_move_operations_inherit_stock_change_lote_it" model="ir.ui.view">
+        <field name="name">stock.move.view.form.inherit</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_stock_move_operations"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <field name="tipo_operacion_temp" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_move_line_operation_tree_inherit_stoch_change_lote" model="ir.ui.view">
+        <field name="name">stock.move.line.view.list.inherit</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='product_id']" position="after">
+                <field name="trazabilidad" readonly="1" optional="show" />
+            </xpath>
+            <xpath expr="//tree/field[@name='lot_id']" position="after">
+                <field name="lot_ids_domain" invisible="1" />
+                <field name="cant_lote_unico" readonly="1" />
+            </xpath>
+            <xpath expr="//tree/field[@name='lot_id']" position="attributes">
+                <attribute name="domain">[ ("id", "in", lot_ids_domain) ]</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_move_line_detailed_operation_tree_inherit_stock_change_lote" model="ir.ui.view">
+        <field name="name">stock.move.line.view.list.inherit</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='product_id']" position="after">
+                <field name="trazabilidad" readonly="1" optional="show" />
+            </xpath>
+            <xpath expr="//tree/field[@name='lot_id']" position="after">
+                <field name="lot_ids_domain" invisible="1" />
+                <field name="cant_lote_unico" readonly="1" />
+            </xpath>
+            <xpath expr="//tree/field[@name='lot_id_qty']" position="replace">
+                <field name="cant_lote_total" readonly="1" />
+            </xpath>
+            <xpath expr="//tree/field[@name='lot_id']" position="attributes">
+                <attribute name="domain">[ ("id", "in", lot_ids_domain) ]</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

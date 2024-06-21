@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.actions.server" id="action_autocomplete_partner_account_bank_statement">
+			<field name="name">Autocompletar Partners</field>
+			<field name="model_id" ref="account.model_account_bank_statement"/>
+			<field name="binding_model_id" ref="account.model_account_bank_statement" />
+			<field name="state">code</field>
+			<field name="code">action = records.action_autocomplete_partner()</field>
+		</record>
+	</data>
+</odoo>

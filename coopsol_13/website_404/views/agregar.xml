@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="agregar_campo_boolean" model="ir.ui.view">
+        <field name="name">agregar.campo.boolean</field>
+        <field name="model">website.page</field>
+        <field name="inherit_id" ref="website.website_pages_tree_view"/>
+        <field name="arch" type="xml">
+                <xpath expr="//field[@name='write_uid']" position="after">
+                    <!-- Agrega aquí el nuevo campo personalizado -->
+                    <field name="custom_field" invisible="1"/>
+                </xpath>
+        </field>
+    </record>
+</odoo>

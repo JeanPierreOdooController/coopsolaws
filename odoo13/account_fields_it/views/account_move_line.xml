@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_move_line_tree_form_inherit" model="ir.ui.view">
+		<field name="name">move.line.tree.inherit</field>
+		<field name="model">account.move.line</field>
+		<field name="inherit_id" ref="account.view_move_line_tree_grouped"/>
+		<field name="arch" type="xml">
+			<data>
+				<field name="move_id" position="after">
+					<field name="type_document_id" optional="show"/>
+					<field name="nro_comp" optional="show"/>
+				</field>
+				<field name="amount_currency" position="after">
+					<field name="tc" optional="show"/>
+					<field name="cuo" optional="show"/>
+					<field name="tax_amount_it" optional="show"/>
+					<field name="cash_flow_id" optional="show"/>
+					<field name="account_type_it_id" optional="hide"/>
+					<field name="invoice_date_it" optional="hide"/>
+				</field>
+				<field name="credit" position="after">
+					<field name="balance" optional="show" sum="balance"/>
+				</field>
+			</data>
+		</field>
+	</record>
+
+	<record id="view_move_line_tree_form_inherit_bofields" model="ir.ui.view">
+		<field name="name">account.move.line.tree.inherit.bofields</field>
+		<field name="model">account.move.line</field>
+		<field name="inherit_id" ref="account.view_move_line_tree"/>
+		<field name="arch" type="xml">
+			<data>
+				<field name="account_id" position="after">
+					<field name="account_type_it_id" optional="hide"/>
+					<field name="type_document_id" optional="hide"/>
+					<field name="nro_comp" optional="hide"/>
+				</field>
+			</data>
+		</field>
+	</record>
+</odoo>

@@ -1,0 +1,6 @@
+<odoo>
+	<record id="show_hand" model="res.groups">
+			<field name="name">VER CANTIDAD A MANO</field>
+			<field name="category_id" ref="base.module_category_hidden"/>
+	</record>
+</odoo>

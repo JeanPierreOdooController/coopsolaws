@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="group_create_stock_picking_from_account_move" model="res.groups">
+			<field name="name">Crear Albaran desde Factura</field>
+			<field name="category_id" ref="base.module_category_hidden"/>
+		</record>
+	</data>
+</odoo>

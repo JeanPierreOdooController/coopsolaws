@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_main_parameter_sale_manager,main.parameter.sale.manager,coopsol_fields_it.model_main_parameter_sale,sales_team.group_sale_manager,1,1,1,1
+access_service_type_coopsol_manager,service.type.coopsol.manager,model_service_type_coopsol,sales_team.group_sale_manager,1,1,1,1
+access_service_type_coopsol_salesman,service.type.coopsol.salesman,model_service_type_coopsol,sales_team.group_sale_salesman,1,1,1,0
+access_product_line_characteristic_manager,product.line.characteristic.manager,model_product_line_characteristic,base.group_system,1,1,1,1
+access_product_line_characteristic_user,product.line.characteristic.user,model_product_line_characteristic,base.group_user,1,0,0,0

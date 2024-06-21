@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record model="ir.actions.server" id="action_ebill_refresh_invoice">
+		<field name="name">Consultar CPE</field>
+		<field name="model_id" ref="account.model_account_move"/>
+		<field name="binding_model_id" ref="account.model_account_move" />
+		<field name="state">code</field>
+		<field name="code">
+			for l in records:
+				try:
+					l.query_ebill()
+				except Exception:
+					pass
+		</field>
+	</record> 
+</odoo>

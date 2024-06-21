@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_payslip_run_consolidado_form_inherit" model="ir.ui.view">
+		<field name="name">view.hr.payslip.run.consolidado.form.inherit</field>
+		<field name="model">hr.resumen.planilla</field>
+		<field name="inherit_id" ref="hr_fields_it.view_hr_payslip_run_consolidado_form"/>
+		<field name="arch" type="xml">
+            <xpath expr="//button[@name='tab_payroll']" position="after">
+				<button name="vouchers_by_lot" string="Imprimir Boletas" type="object" class="oe_highlight" attrs="{'invisible':[('state','not in',['verify','close'])]}"/>
+			</xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_account_des_detail_range_rep_form">
+			<field name="name">account.des.detail.range.rep.form</field>
+			<field name="model">account.des.detail.range.rep</field>
+			<field name="arch" type="xml">
+				<form string="Detalle Destinos Rango Periodo">
+						<group>
+							<group>
+								<field name="company_id"/>
+                                <field name="fiscal_year_id"/>
+								<field name="period_from_id" domain="[('fiscal_year_id','=',fiscal_year_id)]"/>
+								<field name="period_to_id" domain="[('fiscal_year_id','=',fiscal_year_id)]"/>
+							</group>
+							<group>
+								<field name="type_show"/>
+							</group>
+						</group>
+						<footer>
+							<button string="Mostrar" name="get_report" type="object" class="oe_highlight"/>
+                            or
+							<button string="Cancel" class="oe_link" special="cancel"/>
+						</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="account_des_detail_range_rep_action" model="ir.actions.act_window">
+			<field name="name">Detalle Destinos Rango Periodo</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.des.detail.range.rep</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+		<menuitem action="account_des_detail_range_rep_action" 
+				id="menu_action_account_des_detail_range_rep" 
+				parent="account_destinos_rep_it.menu_account_destinos_analytic_report" 
+				sequence="30" 
+				groups="account_base_it.group_account_tables_user"/>
+		
+	</data>
+</odoo>

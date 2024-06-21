@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="view_hr_resumen_planilla_form" model="ir.ui.view">
+			<field name="name">hr.resumen.planilla.form</field>
+			<field name="model">hr.resumen.planilla</field>
+			<field name="arch" type="xml">
+				<form string="Planilla Central">
+					<header>
+						<button name="get_consolidado" string="Generar Consolidado" type="object" states="draft" class="oe_highlight"/>
+						<button name="set_draft" string="Volver a Borrador" type="object" states="verify" class="oe_highlight" confirm="eliminaras todas las Nominas que existen actualmente ¿Esta seguro que desea hacer esto?"/>
+						<button name="tab_payroll" string="Planilla Tabular" type="object" class="oe_highlight" attrs="{'invisible':[('state','not in',['verify','close'])]}"/>
+						<button name="vouchers_by_lot" string="Imprimir Boletas" type="object" class="oe_highlight" attrs="{'invisible':[('state','not in',['verify','close'])]}"/>
+						<button name="generate_afp_net" string="AFP-NET" type="object" class="oe_highlight" attrs="{'invisible':[('state','not in',['verify','close'])]}"/>
+<!--						<button name="generate_plame_wizard" string="Generar PLAME" type="object" class="oe_highlight" attrs="{'invisible':[('state','not in',['verify','close'])]}"/>-->
+						<button name="close_payroll" string="Cerrar" type="object" class="oe_highlight" states="verify" groups="hr_fields_it.group_hr_manager"/>
+						<button name="reopen_payroll" string="Reabrir Planilla" type="object" class="oe_highlight" states="close" groups="hr_fields_it.group_hr_manager"/>
+						<field name="state" widget="statusbar" readonly="1"/>
+					</header>
+					<sheet>
+						<div class="oe_button_box" name="button_box">
+							<button name="action_open_payslips" class="oe_stat_button" icon="fa-book" type="object" help="Recibos Generados" attrs="{'invisible': [('payslip_count', '=', 0)]}">
+								<div class="o_field_widget o_stat_info">
+									<span class="o_stat_value"><field name="payslip_count"/></span>
+									<span class="o_stat_text">Recibos</span>
+								</div>
+							</button>
+						</div>
+						<label for="periodo_id" string="Planilla"/>
+						<h1>
+							<field name="periodo_id" required="1" options="{'no_create': True, 'no_create_edit':True}"/>
+						</h1>
+						<group>
+							<group name="asiento_contable">
+<!--								<field name="account_move_id"/>-->
+							</group>
+							<group>
+								<field name="company_id" groups="base.group_multi_company"/>
+								<field name="date_start" invisible="1"/>
+								<field name="date_end" invisible="1"/>
+							</group>
+						</group>
+						<field name="slip_ids">
+							<tree string="Planilla Central del Mes" create="false">
+<!--								<field name="periodo_id"/>-->
+								<field name="identification_id"/>
+								<field name="employee_id"/>
+							</tree>
+						</field>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_hr_resumen_planilla_tree" model="ir.ui.view">
+			<field name="name">hr.resumen.planilla.tree</field>
+			<field name="model">hr.resumen.planilla</field>
+			<field name="arch" type="xml">
+				<tree string="Planillas Consolidadas">
+					<field name="periodo_id"/>
+					<field name="date_start"/>
+					<field name="date_end"/>
+					<field name="state"/>
+					<field name="company_id" groups="base.group_multi_company"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_hr_resumen_planilla_filter" model="ir.ui.view">
+			<field name="name">hr.resumen.planilla.search</field>
+			<field name="model">hr.resumen.planilla</field>
+			<field name="arch" type="xml">
+				<search string="Planilla Consolidada">
+					<field name="periodo_id" string="PLanilla"/>
+					<filter string="Planillas en Borrador" name="draft" domain="[('state', '=', 'draft')]" help="Planillas en Borrador"/>
+					<filter string="Planillas Hechas" name="close" domain="[('state', '=', 'close')]" help="Planillas Hechas"/>
+					<group expand="0" string="Group By">
+						<filter string="Estados" name="state" context="{'group_by': 'state'}"/>
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="action_hr_resumen_planilla" model="ir.actions.act_window">
+			<field name="name">Planillas Consolidadas</field>
+			<field name="res_model">hr.resumen.planilla</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="view_hr_resumen_planilla_tree"/>
+			<field name="search_view_id" ref="view_hr_resumen_planilla_filter"/>
+			<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				Crea tu primera planilla consolidada del mes
+			</p>
+			</field>
+		</record>
+
+		<menuitem action="action_hr_resumen_planilla"
+				  id="menu_hr_resumen_planilla"
+				  parent="hr_payroll.menu_hr_payroll_payslips"
+				  groups="group_hr_payslip_run_consolidado"
+				  sequence="110"/>
+
+		<record id="afp_net_hr_resumen_planilla" model="ir.actions.server">
+			<field name="name">Generar AFP NET</field>
+			<field name="model_id" ref="hr_resumen_planilla_it.model_hr_resumen_planilla"/>
+			<field name="binding_model_id" ref="hr_resumen_planilla_it.model_hr_resumen_planilla"/>
+			<field name="state">code</field>
+			<field name="code">action = records.generate_afp_net()</field>
+		</record>
+
+		<record id="plame_rem_hr_resumen_planilla" model="ir.actions.server">
+			<field name="name">Exportar Plame .REM</field>
+			<field name="model_id" ref="hr_resumen_planilla_it.model_hr_resumen_planilla"/>
+			<field name="binding_model_id" ref="hr_resumen_planilla_it.model_hr_resumen_planilla"/>
+			<field name="state">code</field>
+			<field name="code">action = records.generate_plame_rem()</field>
+		</record>
+		<record id="plame_hour_hr_resumen_planilla" model="ir.actions.server">
+			<field name="name">Exportar Plame .JOR</field>
+			<field name="model_id" ref="hr_resumen_planilla_it.model_hr_resumen_planilla"/>
+			<field name="binding_model_id" ref="hr_resumen_planilla_it.model_hr_resumen_planilla"/>
+			<field name="state">code</field>
+			<field name="code">action = records.generate_plame_jor()</field>
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="serie_guia" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="numberg" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="carrier_id_it" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="vehicle_id" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="driver_id" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="type_of_transport" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="reason_transfer" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>            
+        </field>
+    </record>
+</odoo>

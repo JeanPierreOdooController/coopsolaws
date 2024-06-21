@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_letter_wizard_view_form" model="ir.ui.view">
+        <field name="name">hr.letter.wizard.view.form</field>
+        <field name="model">hr.letter.wizard</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <group>
+                    <group col='2'>
+                        <field name="employee_id" />
+                        <field name="des_empl" />
+                    </group>
+                    <group col='2'>
+                        <field name="city" />
+                        <field name="date_fin" />
+                    </group>
+                </group>
+                <center>
+                    <footer>
+                        <button string="EXPORTAR" name="export_letter" type="object" class="oe_highlight"/>
+                        <button string="CANCELAR" class="oe_link" special="cancel"/>
+                    </footer>
+                </center>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_letter_wizard_action" model="ir.actions.act_window">
+        <field name="name">Carta Retiro</field>
+        <field name="res_model">hr.letter.wizard</field>
+        <field name="target">new</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <!-- <menuitem
+        id="hr_letter_wizard_type_menu_employee"
+        name="Carta Retiro PDF"
+        action="certificate_letter_it.hr_letter_wizard_action"
+        sequence="10"
+        parent="hr.menu_hr_employee_payroll"
+    />
+
+    <menuitem
+        id="hr_letter_wizard_type_menu_nomina"
+        name="Carta Retiro PDF"
+        action="certificate_letter_it.hr_letter_wizard_action"
+        sequence="30"
+        parent="hr_payroll.menu_hr_payroll_employees_root"
+    /> -->
+
+    <record id="get_letter_employee" model="ir.actions.server">
+		<field name="name">Carta Retiro</field>
+		<field name="model_id" ref="hr.model_hr_employee"/>
+		<field name="binding_model_id" ref="hr.model_hr_employee"/>
+		<field name="state">code</field>
+		<field name="code">action = records.open_wizard_letter()</field>
+	</record>
+
+</odoo>

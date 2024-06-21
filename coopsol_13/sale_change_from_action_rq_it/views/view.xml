@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale_order_action_change_invoice_state" model="ir.actions.server">
+		<field name="name">Cambiar Estado Factura</field>
+		<field name="model_id" ref="sale.model_sale_order"/>
+		<field name="binding_model_id" ref="sale.model_sale_order"/>
+		<field name="state">code</field>
+		<field name="code">action = records.open_wizard_invoice_state()</field>
+	</record>
+
+    <record id="sale_order_action_change_state" model="ir.actions.server">
+		<field name="name">Cambiar Estado Venta</field>
+		<field name="model_id" ref="sale.model_sale_order"/>
+		<field name="binding_model_id" ref="sale.model_sale_order"/>
+		<field name="state">code</field>
+		<field name="code">action = records.open_wizard_state()</field>
+	</record>
+
+    <record id="sale_change_invoice_state_wizard_view_form" model="ir.ui.view">
+        <field name="name">sale.change.invoice.state.wizard.view.form</field>
+        <field name="model">sale.change.invoice.state.wizard</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <group>
+                    <field name="invoice_status" />
+                    <field name="state_to_change" />
+                </group>
+                <field name="order_ids" readonly="1" />
+                <center>
+                    <footer>
+                        <button string="CAMBIAR ESTADO FACTURA" name="change_invoice_state" type="object" class="oe_highlight"/>
+                        <button string="CANCELAR" class="oe_link" special="cancel"/>
+                    </footer>
+                </center>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_change_state_wizard_view_form" model="ir.ui.view">
+        <field name="name">sale.change.state.wizard.view.form</field>
+        <field name="model">sale.change.state.wizard</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <group>
+                    <field name="state" />
+                </group>
+                <field name="order_ids" readonly="1" />
+                <center>
+                    <footer>
+                        <button string="CAMBIAR ESTADO" name="change_state" type="object" class="oe_highlight"/>
+                        <button string="CANCELAR" class="oe_link" special="cancel"/>
+                    </footer>
+                </center>
+            </form>
+        </field>
+    </record>
+
+</odoo>

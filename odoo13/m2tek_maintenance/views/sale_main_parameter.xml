@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+	<record id="maintenance_request_form_inherit" model="ir.ui.view">
+		<field name="name">maintenance.request.form.inherit</field>
+		<field name="model">maintenance.request</field>
+		<field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+		<field name="arch" type="xml">
+			<button name="archive_equipment_request" position="after">
+                <button name="print_format" string="Imprimir Formato" type="object" class="oe_highlight" attrs="{'invisible': [('hoja_count', '=', 0)]}"/>
+			</button>
+			<field name="schedule_date" position="after">
+				<label for="expected_duration"/>
+				<div>
+					<field name="expected_duration" widget="float_time" class="oe_inline"/> <span class="ml8">horas</span>
+				</div>
+			</field>
+			<field name="maintenance_type" position="after">
+				<field name="analytic_account_id"/>
+			</field>
+
+
+			<xpath expr="//div[@class='oe_right']" position="after">
+				<div class="oe_button_box" name="button_box">
+					<field name="stage_name" invisible="1"/>
+					<button name="get_report" class="oe_stat_button" icon="fa-credit-card" type="object" help="Hoja de Servicio" attrs="{'invisible':[('stage_name','=','Nueva solicitud')]}">
+						<div class="o_field_widget o_stat_info">
+							<span class="o_stat_value"><field name="hoja_count"/></span>
+							<span class="o_stat_text">Hoja de Servicio</span>
+						 </div>
+					</button>
+					<button name="get_maintenance_purchases" class="oe_stat_button" icon="fa-credit-card" type="object" help="Requerimientos">
+						<div class="o_field_widget o_stat_info">
+							<span class="o_stat_value"><field name="purchase_count"/></span>
+							<span class="o_stat_text">Requerimientos</span>
+						 </div>
+					</button>
+					<button name="get_maintenance_pickings" class="oe_stat_button" icon="fa-truck" type="object" help="Almacenes">
+						<div class="o_field_widget o_stat_info">
+							<span class="o_stat_value"><field name="picking_count"/></span>
+							<span class="o_stat_text">Almacenes</span>
+						 </div>
+					</button>
+				</div>
+			</xpath>
+
+
+			<field name="description" position="before">
+				<notebook>
+					<page string="Componentes Principales">
+						<field name="component_lines">
+							<tree editable="bottom">
+								<field name="component_id" required="1"/>
+								<field name="product_id"/>
+								<field name="lot_id"/>
+								<field name="quantity" sum="quantity"/>
+								<field name="notes"/>
+							</tree>
+						</field>
+					</page>
+				</notebook>
+			</field>
+
+		</field>
+	</record>
+
+	</data>
+</odoo>

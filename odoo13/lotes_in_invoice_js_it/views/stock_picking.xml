@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    <record id="lotes_herencia" model="ir.ui.view">
+            <field name="name">stock.production.lot.form</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="attributes">
+                    <attribute name="attrs">{'invisible': 0}</attribute>
+               </xpath>
+            </field>
+    </record>
+
+    <record id="company_herencia" model="ir.ui.view">
+            <field name="name">res.company.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='favicon']"  position="after">
+                    <field name="name_file" string="Nombre Adjunto"/>
+                    <field name="plantilla_import"  widget="file" filename="name_file"/>
+                </xpath>
+            </field>
+    </record>
+
+    <record id="operaciones_detalladas_herencia" model="ir.ui.view">
+            <field name="name">	stock.move.form.herencia</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_stock_move_operations"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/group/group"  position="after">
+                    <group>
+                        <field name="tracking_it" invisible="0"/>
+                        <field name="name_file" invisible="1"/>
+                        <field name="plantilla_importador"  attrs="{'invisible':['|',('tracking_it','=','none'),('tracking_it','=',False)]}" filename="name_file"/>
+                        <field name="file_inv"  attrs="{'invisible':['|',('tracking_it','=','none'),('tracking_it','=',False)]}" />
+                        <field name="separator" attrs="{'invisible':['|',('tracking_it','=','none'),('tracking_it','=',False)]}" />
+                        <button string="Obtener Lotes/Series" type="object" name="load_lines" class="oe_highlight"
+                                confirm="Estas seguro de importar las lineas del excell ?"
+                        attrs="{'invisible':['|',('tracking_it','=','none'),('tracking_it','=',False)]}" />
+                        <button string="Limpiar Lineas" type="object" name="clear_lines" class="oe_highlight"
+                                confirm="Estas seguro de eliminar todas las lineas ?"
+                                attrs="{'invisible':[('tracking_it','=','none')]}"
+                         />
+                    </group>
+                </xpath>
+            </field>
+    </record>
+
+    -->
+
+    <record id="agregar_otra_descripcion" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[3]/field[@name='move_ids_without_package']/tree//field[@name='description_picking']"  position="after">
+                    <field name="description_picking_extra" optional="hide"/>
+                </xpath>
+            </field>
+    </record>
+
+
+
+</odoo>

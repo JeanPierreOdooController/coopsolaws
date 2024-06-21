@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="0">		
+        <record id="sample_update_price_stock_moves_xls_price" model="ir.attachment">
+            <field name="name">sample_file_update_price_stock_moves_price.xlsx</field>
+            <field name="type">binary</field>
+            <field name="datas" type="base64" file="import_price_stock_line_rq_it/sample_import_file/sample_file_update_price_stock_moves_price.xlsx"/>
+        </record>
+    </data>
+</odoo>

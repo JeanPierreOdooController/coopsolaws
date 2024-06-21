@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_costs_sales_analysis_wizard_detail_form">
+			<field name="name">costs.sales.analysis.wizard.detail.form</field>
+			<field name="model">costs.sales.analysis.wizard.detail</field>
+			<field name="arch" type="xml">
+				<form string="Análisis Costo de Venta Detalle">
+					<group>
+						<group>
+							<field name="company_id"/>
+							<field name="period"/>
+						</group>
+						<group>
+							<field name="type_show"/>
+						</group>
+					</group>
+					<footer>
+						<button string="Mostrar" name="get_report" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="costs_sales_analysis_wizard_detail_action" model="ir.actions.act_window">
+			<field name="name">Análisis Costo de Venta Detalle</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">costs.sales.analysis.wizard.detail</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem action="costs_sales_analysis_wizard_detail_action" 
+				  id="menu_action_costs_sales_analysis_wizard_detail" 
+				  parent="kardex_fisico_it.kardex_main_menu"
+				  sequence="91"/>
+	</data>
+</odoo>

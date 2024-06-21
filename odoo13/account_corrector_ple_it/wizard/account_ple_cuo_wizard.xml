@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_accoun_ple_cuo_wizard_form">
+			<field name="name">account.ple.cuo.wizard.form</field>
+			<field name="model">account.ple.cuo.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Corrector PLE CUO">
+					<group>
+						<group>
+							<field name="company_id"/>
+							<field name="fiscal_year_id"/>
+							<field name="period" domain="[('fiscal_year_id','=',fiscal_year_id)]"/>
+						</group>
+					</group>
+					<separator string ="Lineas" colspan="4" attrs="{'invisible': [('lines','=',[])]}"/>
+						<field name="lines" readonly="1" attrs="{'invisible': [('lines','=',[])]}">
+							<tree>
+								<field name="periodo"/>
+								<field name="fecha"/>
+								<field name="libro"/>
+								<field name="fecha_doc"/>
+								<field name="td_sunat"/>
+								<field name="nro_comprobante"/>
+								<field name="cuo"/>
+								<field name="cuo_c"/>
+							</tree>
+						</field>
+					<footer>
+						<button string="Mostrar" name="get_report" type="object" class="oe_highlight"/>
+						<button string="Corregir" name="fix_lines" attrs="{'invisible': [('lines','=',[])]}" confirm="Se modificarán los CUOs de todos los apuntes contables mostrados en la lista. ¿Desea continuar?" type="object" class="oe_highlight"/>
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="account_ple_cuo_wizard_action" model="ir.actions.act_window">
+			<field name="name">Corrector PLE CUO</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.ple.cuo.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem
+			id="menu_main_fix_ple_cuo"
+			action="account_ple_cuo_wizard_action"
+			parent="menu_main_fix_ple"
+			groups="account_base_it.group_account_tables_user"
+			sequence="3"/>
+
+	</data>
+</odoo>

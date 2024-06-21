@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_picking_form_inherit_stock_filter_lote_it_check" model="ir.ui.view">
+        <field name="name">stock.picking.view.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[3]/field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="after">
+                <field name="cant_disponible" readonly="1" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

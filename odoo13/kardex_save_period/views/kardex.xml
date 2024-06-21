@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="kardex_save_form" model="ir.ui.view">
+            <field name="name">kardex.save.form</field>
+            <field name="model">kardex.save</field>
+            <field name="arch" type="xml">
+                <form string="Guardado Kardex">
+                    <header>
+                        <button string="Procesar" type="object" name="save" states="draft" class="oe_highlight"/>
+                        <button string="Volver Borrador" type="object" name="draft" states="done" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <group class="oe_title">
+                            <h1>
+                                <field name="name" required="1" readonly="0"/>
+                            </h1>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="date" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="company_id" readonly="1" required="1" groups="base.group_multi_company"/>  
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="kardex_save_tree" model="ir.ui.view">
+            <field name="name">kardex.save.tree</field>
+            <field name="model">kardex.save</field>
+            <field name="arch" type="xml">
+                <tree string="Guardado Kardex">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="state" />
+					<field name="company_id" groups="base.group_multi_company"/>  
+                </tree>
+            </field>
+        </record>
+
+        <record id="kardex_save_it_action" model="ir.actions.act_window">
+            <field name="name">Guardado Kardex</field>
+            <field name="res_model">kardex.save</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+			<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				Crea tu primer Guardado kardex aqui
+			</p>
+			</field>
+        </record>
+
+        <menuitem action="kardex_save_it_action" 
+				  id="menu_kardex_save" 
+				  parent="account.menu_finance_reports"
+				  sequence="1"/>
+	</data>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_partner_form_inherit" model="ir.ui.view">
+		<field name="name">res.partner.form.inherit</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="base.view_partner_form"/>
+		<field name="arch" type="xml">
+			<data>
+				<xpath expr="//page[@name='sales_purchases']" position="inside">
+					<group string="Seguimiento">
+						<group>
+							<field name="is_followup_it"/>
+						</group>
+					</group>
+				</xpath>
+			</data>
+		</field>
+	</record>
+	
+	<record model="ir.actions.server" id="action_send_followup_email_res_partner">
+		<field name="name">Enviar recordatorio por Correo</field>
+		<field name="model_id" ref="base.model_res_partner"/>
+		<field name="binding_model_id" ref="base.model_res_partner" />
+		<field name="state">code</field>
+		<field name="code">action = records.execute_followup()</field>
+	</record>
+
+	<record id="account_followup.action_view_list_customer_statements" model="ir.actions.act_window">
+		<field name="domain">[('is_followup_it', '=', True),'|', ('parent_id', '=', False), ('is_company', '=', True)]</field>
+	</record>
+</odoo>

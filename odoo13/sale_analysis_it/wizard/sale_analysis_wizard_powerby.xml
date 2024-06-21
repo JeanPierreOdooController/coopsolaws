@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!--
+		<record model="ir.ui.view" id="view_sale_analysis_wizard_powerby_form">
+			<field name="name">sale.analysis.wizard.form</field>
+			<field name="model">sale.analysis.wizard.powerby</field>
+			<field name="arch" type="xml">
+				<form string="Analisis de Ventas">
+					<footer>
+						<button string="Mostrar" name="get_report" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="sale_analysis_wizard_action_powerby" model="ir.actions.act_window">
+			<field name="name">Analisis de Ventas Power By</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">sale.analysis.wizard.powerby</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+		-->
+
+		<record id="sale_analysis_wizard_action_powerby" model="ir.actions.server">
+		    <field name="name">Analisis de Ventas Power By</field>
+		    <field name="model_id" ref="sale_analysis_it.model_sale_analysis_wizard_powerby"/>
+		    <field name="binding_model_id" ref="sale_analysis_it.model_sale_analysis_wizard_powerby"/>
+		    <field name="state">code</field>
+		    <field name="code">action = model.get_report()</field>
+	    </record>
+
+		<menuitem action="sale_analysis_wizard_action_powerby"
+				  id="menu_action_sale_analysis_wizard_powerby"
+				  parent="base.menu_custom"
+				  sequence="9"
+				  />
+	</data>
+</odoo>

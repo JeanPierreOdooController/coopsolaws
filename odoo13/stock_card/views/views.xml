@@ -1,0 +1,17 @@
+<odoo>
+  <data>
+    <record id="action_stock_card_report" model="ir.actions.act_window">
+        <field name="name">Kardex por producto</field>
+        <field name="res_model">stock.card.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Reporting menu -->
+    <menuitem id="menu_account_excel_report"
+              name="Kardex por producto"
+              parent="stock.menu_warehouse_report"
+              action="action_stock_card_report"
+              sequence="4"/>
+  </data>
+</odoo>

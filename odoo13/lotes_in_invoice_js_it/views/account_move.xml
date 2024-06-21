@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="factura_herencia_js" model="ir.ui.view">
+           <field name="name">account.move</field>
+           <field name="model">account.move</field>
+           <field name="inherit_id" ref="account.view_move_form"/>
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='currency_id']" position="after">
+                       <!--
+                       <field name="albaran_ids_filter" invisible="1"/>
+
+                       <field name="picking_id_it"
+                              domain="['|',('partner_id.parent_id','=',partner_id),('partner_id','=',partner_id)]"
+                       />
+                       -->
+                        <field name="first_update_descripcion" invisible="1"/>
+                       <button name="action_set_descripcion" string="Lotes" type="object"
+                               cpnfirm="Estas seguro de realizar esta accion?"
+                               class="oe_highlight" />
+               </xpath>
+               <xpath expr="/form/sheet/notebook/page[1]/field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
+                   <field name="picking_id_it" invisible="1"/>
+                   <field name="picking_lines_id_it" optional="hide" readonly="0" invisible="1" />
+                </xpath>
+
+           </field>
+    </record>
+
+    <record id="agregar_move" model="ir.ui.view">
+            <field name="name">account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="ebill.view_move_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='guide_line_ids']/tree/field[@name='numberg']"  position="before">
+                    <field name="picking_id"  string="Albaran" />
+                </xpath>
+            </field>
+    </record>
+
+
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_hr_payslip_run_consolidado_form_inherit" model="ir.ui.view">
+		<field name="name">view.hr.payslip.run.consolidado.form.inherit</field>
+		<field name="model">hr.payslip.run.consolidado</field>
+		<field name="inherit_id" ref="hr_fields_it.view_hr_payslip_run_consolidado_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//group[@name='asiento_contable']" position="inside">
+				<field name="account_move_id"/>
+			</xpath>
+			<xpath expr="//div[@name='button_box']" position="inside">
+				<button string="Asiento Contable" type="object"
+						name="action_open_asiento"
+						class="oe_stat_button" icon="fa-list"
+						attrs="{'invisible': [('account_move_id', '=', False)]}" />
+			</xpath>
+		</field>
+	</record>
+
+	<record id="wizard_hr_payslip_run_consolidado" model="ir.actions.server">
+		<field name="name">Generar Asiento Contable</field>
+		<field name="model_id" ref="hr_fields_it.model_hr_payslip_run_consolidado"/>
+		<field name="binding_model_id" ref="hr_fields_it.model_hr_payslip_run_consolidado"/>
+		<field name="state">code</field>
+		<field name="code">action = records.get_move_wizard()</field>
+	</record>
+</odoo>

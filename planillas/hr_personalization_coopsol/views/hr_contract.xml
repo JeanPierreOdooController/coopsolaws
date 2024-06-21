@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="hr_contract_form_inherit_retention" model="ir.ui.view">
+		<field name="name">hr.contract.form.inherit.retention</field>
+		<field name="model">hr.contract</field>
+		<field name="inherit_id" ref="hr_fields_it.hr_contract_form_inherit"/>
+		<field name="arch" type="xml">
+			<group name="afp_net" position="before">
+				<group name="retention_juditial" string="Retencion Judicial">
+					<group>
+						<field name="retention_type"/>
+					</group>
+					<group>
+						<field name="tasa" widget="percentage" attrs="{'invisible':[('retention_type','!=','percentage')]}"/>
+						<field name="amount" attrs="{'invisible':[('retention_type','!=','fixed')]}"/>
+					</group>
+				</group>
+			</group>
+			<field name="sctr_id" position="before">
+				<field name="is_vida_ley"/>
+				<field name="is_senati"/>
+			</field>
+			<xpath expr="//group[@name='salary_and_advantages']" position="inside">
+				<label for="movilidad"/>
+				<div class="o_row" name="movilidad">
+					<field name="movilidad" nolabel="1"/>
+					<span>/ mes</span>
+				</div>
+				<label for="refrigerio"/>
+				<div class="o_row" name="refrigerio">
+					<field name="refrigerio" nolabel="1"/>
+					<span>/ mes</span>
+				</div>
+				<label for="bono_cump"/>
+				<div class="o_row" name="bono_cump">
+					<field name="bono_cump" nolabel="1"/>
+					<span>/ mes</span>
+				</div>
+				<label for="bono_proy"/>
+				<div class="o_row" name="bono_proy">
+					<field name="bono_proy" nolabel="1"/>
+					<span>/ mes</span>
+				</div>
+				<label for="bono_prod"/>
+				<div class="o_row" name="bono_prod">
+					<field name="bono_prod" nolabel="1"/>
+					<span>/ mes</span>
+				</div>
+			</xpath>
+		</field>
+	</record>
+</odoo>

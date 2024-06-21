@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_convert_recxhon_wizard_form">
+			<field name="name">convert.recxhon.wizard.form</field>
+			<field name="model">convert.recxhon.wizard</field>
+			<field name="arch" type="xml">
+				<form>
+					<group>
+						<group>
+							<field name="name_file" invisible="1"/>
+							<field name="document_file" filename="name_file" string="Archivo"/>
+						</group>
+						<group>
+							<field name="account_id" />
+							<field name="journal_id"/>
+						</group>
+					</group>
+					<footer>
+						<button string="Generar Plantilla" name="load_lines" type="object" class="oe_highlight"/>
+						<button string="Importar Recibos" name="import_invoices" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="convert_recxhon_wizard_action" model="ir.actions.act_window">
+			<field name="name">Importar RH</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">convert.recxhon.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem action="convert_recxhon_wizard_action" 
+				  id="menu_convert_recxhon_wizard_action" 
+				  parent="import_journal_entry_it.menu_account_import_master" 
+				  sequence="20"/>
+	</data>
+</odoo>

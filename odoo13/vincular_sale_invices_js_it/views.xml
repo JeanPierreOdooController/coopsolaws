@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="factura_herencia_js" model="ir.ui.view">
+           <field name="name">account.move</field>
+           <field name="model">account.move</field>
+           <field name="inherit_id" ref="account.view_move_form"/>
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='currency_id']" position="after">
+                       <field name="search_force_po" invisible="1"
+                              groups="show_field_invoices_purchase_js_it.group_vincular_facturas_compras" />
+                       <field name="sale_it" domain="[('invoice_count','=',0)]"
+                              attrs="{'invisible':[('search_force_po','=',True)]}"
+                              groups="show_field_invoices_purchase_js_it.group_vincular_facturas_compras" />
+                       <field name="sale_it2" attrs="{'invisible':[('search_force_po','!=',True)]}"
+                              groups="show_field_invoices_purchase_js_it.group_vincular_facturas_compras" />
+                       <field name="type"
+                              groups="show_field_invoices_purchase_js_it.group_vincular_facturas_compras" />
+
+                </xpath>
+
+               <xpath expr="/form/sheet/notebook/page[1]/field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
+                    <field name="sale_it" invisible="1"  groups="show_field_invoices_purchase_js_it.group_vincular_facturas_compras"/>
+                   <field name="sale_line_id_it" optional="show" readonly="0" domain="[('order_id','=',sale_it)]" />
+                   <field name="sale_line_ids" optional="show" readonly="0" STRING="HOLAS"/>
+                </xpath>
+           </field>
+    </record>
+
+    <record id="sale_order_form_j" model="ir.ui.view">
+           <field name="name">sale.order.tree</field>
+           <field name="model">sale.order</field>
+           <field name="inherit_id" ref="sale.view_order_form"/>
+           <field name="arch" type="xml">
+               <xpath expr="/form/sheet/notebook/page[1]/field[@name='order_line']/tree/field[@name='analytic_tag_ids']" position="after">
+                   <field name="invoice_lines" optional="show" widget="many2many_tags" readonly="0" />
+               </xpath>
+
+           </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_order_line_tree_it" model="ir.ui.view">
+        <field name="name">purchase.order.line.tree.it</field>
+        <field name="model">purchase.order.line</field>
+        <field name="arch" type="xml">
+            <tree string="Lineas de Pedido de Compra" create="false" delete="false" edit="false">
+                <field name="order_id"/>
+                <field name="name"/>
+                <field name="partner_id" string="Vendor" />
+                <field name="default_code_product_rel"/>
+                <field name="name_product_rel"/>
+                <field name="price_unit"/>
+                <field name="product_qty"/>
+                <field name="product_uom" groups="uom.group_uom"/>
+                <field name="price_subtotal" widget="monetary"/>
+                <field name="date_planned"  widget="date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_pivot_it" model="ir.ui.view">
+            <field name="name">purchase.order.line.pivot</field>
+            <field name="model">purchase.order.line</field>
+            <field name="arch" type="xml">
+                <pivot string="Lineas de Pedido de Compra">
+                    <field name="price_subtotal" type="measure"/>
+                    <field name="partner_id" type="row"/>
+                    <field name="product_id" type="col"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="purchase_order_line_book_graph_it" model="ir.ui.view">
+            <field name="name">purchase.order.line.graph</field>
+            <field name="model">purchase.order.line</field>
+            <field name="arch" type="xml">
+                <graph string="Lineas de Pedido de Compra" type="bar" stacked="1">
+                    <field name="partner_id"/>
+                    <field name="price_subtotal" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+    <record id="action_purchase_order_line_tree_it" model="ir.actions.act_window">
+			<field name="name">Lineas de Pedido de Compra</field>
+			<field name="res_model">purchase.order.line</field>
+            <field name="domain">[('display_type', 'not in', ('line_section', 'line_note'))]</field>
+			<field name="view_ids"
+                   eval="
+                            [
+                            (5, 0, 0),
+                            (0, 0, {'view_mode': 'tree', 'view_id': ref('purchase_order_line_tree_it')}),
+							(0, 0, {'view_mode': 'pivot', 'view_id': ref('purchase_order_line_pivot_it')}),
+							(0, 0, {'view_mode': 'graph', 'view_id': ref('purchase_order_line_book_graph_it')})
+                          ]"
+            />
+		</record>
+
+    <menuitem
+			id="menu_purchase_order_line_tree_it"
+			action="action_purchase_order_line_tree_it"
+			parent="purchase.menu_procurement_management"
+			sequence="7"/>
+
+</odoo>

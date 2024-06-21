@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+    <template id="portal.portal_my_details">
+        <t t-call="portal.portal_layout">
+            <t t-set="additional_title">Contact Details</t>
+            <form action="/my/account" method="post">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div class="row o_portal_details">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <t t-set="partner_can_edit_vat" t-value="partner.can_edit_vat()"/>
+                            <div class="col-lg-12">
+                              <div t-if="error_message" class="alert alert-danger" role="alert">
+                                  <t t-foreach="error_message" t-as="err"><t t-esc="err"/><br /></t>
+                              </div>
+                            </div>
+                            <div t-attf-class="form-group #{error.get('name') and 'o_has_error' or ''} col-xl-6">
+                                <label class="col-form-label" for="name">Name</label>
+                                <input type="text" name="name"  id="name" t-attf-class="form-control #{error.get('name') and 'is-invalid' or ''}" t-att-value="name or partner.name" />
+                            </div>
+                            <div t-attf-class="form-group #{error.get('email') and 'o_has_error' or ''} col-xl-6">
+                                <label class="col-form-label" for="email">Email</label>
+                                <input type="email" name="email" t-attf-class="form-control #{error.get('email') and 'is-invalid' or ''}" t-att-value="email or partner.email" />
+                            </div>
+
+                            <div class="clearfix" />
+
+
+                            <div t-attf-class="form-group #{error.get('l10n_latam_identification_type_id') and 'o_has_error' or ''} col-lg-6 div_vat">
+                                  <label class="col-form-label" for="l10n_latam_identification_type_id">Documento</label>
+                                    <select id="l10n_latam_identification_type_id" name="l10n_latam_identification_type_id"
+                                          t-attf-data-init="#{document.id}"
+                                          t-attf-class="form-control #{error.get('l10n_latam_identification_type_id') and 'is-invalid' or ''}"
+                                    >
+                                      <option value="">Documento...</option>
+                                         <t t-foreach="documents" t-as="s">
+                                            <option t-att-value="s.id"
+                                               t-att-selected="s.id == (document and document.id or -1)">
+                                              <t t-esc="s.name"/>
+                                            </option>
+                                         </t>
+                                   </select>
+                            </div>
+
+
+                            <div t-attf-class="form-group #{error.get('vat') and 'o_has_error' or ''} col-xl-6">
+                                <label class="col-form-label label-optional" for="vat">Nº Doc</label>
+                                <input type="text" name="vat" id="vat"  t-attf-class="form-control #{error.get('vat') and 'is-invalid' or ''}" t-att-value="vat or partner.vat" t-att-readonly="None if partner_can_edit_vat else '1'" t-att-title="None if partner_can_edit_vat else 'Changing VAT number is not allowed once document(s) have been issued for your account. Please contact us directly for this operation.'" />
+                            </div>
+                            <div t-attf-class="form-group #{error.get('phone') and 'o_has_error' or ''} col-xl-6">
+                                <label class="col-form-label" for="phone">Phone</label>
+                                <input type="tel" name="phone" t-attf-class="form-control #{error.get('phone') and 'is-invalid' or ''}" t-att-value="phone or partner.phone" />
+                            </div>
+
+                            <div t-attf-class="form-group #{error.get('company_name') and 'o_has_error' or ''} col-xl-6">
+                                <label class="col-form-label label-optional" for="company_name">Company Name</label>
+                                <!-- The <input> is replace by a <p> to avoid sending an unauthorized value on form submit.
+                                     The user might not have rights to change company_name but should still be able to see it.
+                                -->
+                                <p t-if="not partner_can_edit_vat" t-attf-class="form-control" readonly="1" t-esc="partner.commercial_company_name" title="Changing company name is not allowed once document(s) have been issued for your account. Please contact us directly for this operation."/>
+                                <input t-else="" type="text" name="company_name" t-attf-class="form-control #{error.get('company_name') and 'is-invalid' or ''}" t-att-value="company_name or partner.commercial_company_name"/>
+                            </div>
+
+                            <div class="clearfix" />
+                            <div t-attf-class="form-group #{error.get('street') and 'o_has_error' or ''} col-xl-6">
+                                <label class="col-form-label" for="street">Street</label>
+                                <input type="text" name="street"  id="street" t-attf-class="form-control #{error.get('street') and 'is-invalid' or ''}" t-att-value="street or partner.street"/>
+                            </div>
+                            <!--
+                            <div t-attf-class="form-group #{error.get('city') and 'o_has_error' or ''} col-xl-6">
+                                <label class="col-form-label" for="city">City</label>
+                                <input type="text" name="city" t-attf-class="form-control #{error.get('city') and 'is-invalid' or ''}" t-att-value="city or partner.city" />
+                            </div>
+                            -->
+
+                            <div t-attf-class="form-group #{error.get('country_id') and 'o_has_error' or ''} col-lg-6 div_country">
+                                            <label class="col-form-label" for="country_id">Country</label>
+                                            <select id="country_id" name="country_id"
+
+                                                    t-attf-class="form-control #{error.get('country_id') and 'is-invalid' or ''}">
+                                                <option value="">Country...</option>
+                                                <t t-foreach="countries" t-as="c">
+                                                    <option t-att-value="c.id" t-att-selected="c.id == (country and country.id or -1)">
+                                                        <t t-esc="c.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                            </div>
+
+                            <div t-attf-class="form-group #{error.get('state_id') and 'o_has_error' or ''} col-lg-6 div_state"
+                                             t-att-style="(not country or not country.state_ids) and 'display: none'">
+                                            <label class="col-form-label" for="state_id">Departamento</label>
+                                            <select id="state_id"  name="state_id"
+                                                    t-att-data-value="state.id"
+                                                    t-attf-class="form-control #{error.get('state_id') and 'is-invalid' or ''}"
+                                                    >
+                                                <option value="">Departamento....</option>
+                                                <t t-foreach="states" t-as="s">
+                                                    <option t-att-value="s.id"
+                                                            t-att-data-code="s.code"
+                                                            t-att-selected="s.id == (state and state.id or -1)">
+                                                        <t t-esc="s.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                            </div>
+
+                            <div t-attf-class="form-group #{error.get('province_id') and 'o_has_error' or ''} col-lg-6 div_state"
+
+                                             t-att-style="(not country or not country.state_ids or not state) and 'display: none'">
+                                            <label class="col-form-label" for="province_id">Provincia
+                                                <span  id="val_province" t-att-value="province.id"  t-if="province" />
+                                            </label>
+                                            <select id="province_id" name="province_id"
+                                                    t-attf-class="form-control #{error.get('province_id') and 'is-invalid' or ''}"
+                                                    t-attf-data-init="#{province.id}"
+                                                    >
+                                                <option value="">Provincia....</option>
+                                                <t t-foreach="provinces" t-as="s">
+                                                    <option t-att-value="s.id"
+                                                            t-att-selected="s.id == (province and province.id or -1)">
+                                                        <t t-esc="s.name"/>
+                                                    </option>
+                                                </t>
+
+                                            </select>
+                                        </div>
+
+                            <div t-attf-class="form-group #{error.get('district_id') and 'o_has_error' or ''} col-lg-6 div_state"
+                                             t-att-style="(not country or not country.state_ids) and 'display: none'"
+                                        t-attf-data-init="#{districts}" >
+                                            <label class="col-form-label" for="district_id">Distrito</label>
+                                            <select id="district_id" name="district_id"
+                                                    t-attf-data-init="#{district.id or '' }"
+                                                    t-attf-class="form-control #{error.get('district_id') and 'is-invalid' or ''}"
+                                                    >
+                                                <option value="">Distrito...</option>
+                                                <t t-foreach="districts" t-as="s">
+                                                    <option t-att-value="s.id"
+                                                            t-att-selected="s.id == (district and district.id or -1)">
+                                                        <t t-esc="s.name"/>
+                                                    </option>
+                                                </t>
+
+                                            </select>
+                            </div>
+
+
+                            <div t-attf-class="form-group #{error.get('zip') and 'o_has_error' or ''} col-xl-6">
+                                <label class="col-form-label label-optional" for="zipcode">Zip / Postal Code</label>
+                                <input type="text" name="zipcode"  id="zipcode"
+                                       t-attf-class="form-control #{error.get('zip') and 'is-invalid' or ''}" t-att-value="zipcode or partner.zip" />
+                            </div>
+
+                            <!--
+
+                            <div t-attf-class="form-group #{error.get('country_id') and 'o_has_error' or ''} col-xl-6">
+                                <label class="col-form-label" for="country_id">Country</label>
+                                <select name="country_id" t-attf-class="form-control #{error.get('country_id') and 'is-invalid' or ''}">
+                                    <option value="">Country...</option>
+                                    <t t-foreach="countries or []" t-as="country">
+                                        <option t-att-value="country.id" t-att-selected="country.id == int(country_id) if country_id else country.id == partner.country_id.id">
+                                            <t t-esc="country.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+
+
+                            <div t-attf-class="form-group #{error.get('state_id') and 'o_has_error' or ''} col-xl-6">
+                                <label class="col-form-label label-optional" for="state_id">State / Province</label>
+                                <select name="state_id" t-attf-class="form-control #{error.get('state_id') and 'is-invalid' or ''}">
+                                    <option value="">select...</option>
+                                    <t t-foreach="states or []" t-as="state">
+                                        <option t-att-value="state.id" style="display:none;" t-att-data-country_id="state.country_id.id" t-att-selected="state.id == partner.state_id.id">
+                                            <t t-esc="state.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+
+                            -->
+                            <input type="hidden" name="redirect" t-att-value="redirect"/>
+                        </div>
+                        <div class="clearfix">
+                            <button type="submit" class="btn btn-primary float-right mb32 ">
+                                Confirm
+                                <span class="fa fa-long-arrow-right" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </t>
+    </template>
+
+</odoo>

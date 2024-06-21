@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="view_purchase_order_form_coopsol_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form.coopsol.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='action_rfq_send'][1]" position="replace">
+                </xpath>
+                <xpath expr="//header/button[@name='action_rfq_send'][2]" position="replace">
+                </xpath>
+                <xpath expr="//header/button[@name='print_quotation']" position="replace">
+                </xpath>
+                <xpath expr="//form//header" position="inside">
+					<button name="get_purchase_order_print_wizard" type="object" string="Imprimir"/>
+				</xpath>
+            </field>
+        </record>
+	</data>
+</odoo>

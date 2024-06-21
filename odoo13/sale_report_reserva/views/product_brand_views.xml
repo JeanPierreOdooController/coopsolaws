@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_product_tree" model="ir.ui.view">
+         <field name="name">sale.report.tree</field>
+         <field name="model">sale.report</field>
+         <field name="arch" type="xml">
+             <tree editable="bottom">
+                 <field name="name" readonly="1"/>
+                 <field name="date" readonly="1"/>
+                 <field name="product_id" readonly="1"/>
+                 <field name="product_uom" readonly="1"/>
+                 <field name="product_uom_qty" readonly="1"/>
+                 <field name="qty_delivered" readonly="1"/>
+                 <field name="qty_to_invoice" readonly="1"/>
+                 <field name="qty_invoiced" readonly="1"/>
+                 <field name="partner_id" readonly="1"/>
+                 <field name="company_id" readonly="1"/>
+                 <field name="user_id" readonly="1"/>
+                 <field name="price_total" readonly="1"/>
+                 <field name="price_subtotal" readonly="1"/>
+                 <field name="untaxed_amount_to_invoice" readonly="1"/>
+                 <field name="untaxed_amount_invoiced" readonly="1"/>
+                 <field name="product_tmpl_id" readonly="1"/>
+                 <field name="categ_id" readonly="1"/>
+                 <field name="nbr" readonly="1"/>
+                 <field name="pricelist_id" readonly="1"/>
+                 <field name="analytic_account_id" readonly="1"/>
+                 <field name="team_id" readonly="1"/>
+                 <field name="country_id" readonly="1"/>
+                 <field name="industry_id" readonly="1"/>
+                 <field name="commercial_partner_id" readonly="1"/>
+                 <field name="state" readonly="1"/>
+
+                 <field name="weight" readonly="1"/>
+                 <field name="volume" readonly="1"/>
+                 <field name="discount" readonly="1"/>
+                 <field name="discount_amount" readonly="1"/>
+                 <field name="campaign_id" readonly="1"/>
+                 <field name="medium_id" readonly="1"/>
+                 <field name="source_id" readonly="1"/>
+                 <field name="order_id" readonly="1"/>
+                 <field name="reservado" readonly="1"/>
+             </tree>
+         </field>
+    </record>
+
+
+
+    <record id="view_purchaseorder_product_tree" model="ir.ui.view">
+         <field name="name">purchase.report.tree</field>
+         <field name="model">purchase.report</field>
+         <field name="arch" type="xml">
+             <tree editable="bottom">
+                 <field name="date_order" readonly="1"/>
+                 <field name="state" readonly="1"/>
+                 <field name="product_id" readonly="1"/>
+                 <field name="partner_id" readonly="1"/>
+                 <field name="date_approve" readonly="1"/>
+                 <field name="product_uom" readonly="1"/>
+                 <field name="company_id" readonly="1"/>
+                 <field name="currency_id" readonly="1"/>
+                 <field name="user_id" readonly="1"/>
+                 <field name="delay" readonly="1"/>
+                 <field name="delay_pass" readonly="1"/>
+                 <field name="price_total" readonly="1"/>
+                 <field name="price_average" readonly="1"/>
+                 <field name="nbr_lines" readonly="1"/>
+                 <field name="category_id" readonly="1"/>
+                 <field name="product_tmpl_id" readonly="1"/>
+                 <field name="country_id" readonly="1"/>
+                 <field name="fiscal_position_id" readonly="1"/>
+                 <field name="account_analytic_id" readonly="1"/>
+                 <field name="commercial_partner_id" readonly="1"/>
+                 <field name="weight" readonly="1"/>
+                 <field name="volume" readonly="1"/>
+                 <field name="order_id" readonly="1"/>
+                 <field name="untaxed_total" readonly="1"/>
+                 <field name="qty_ordered" readonly="1"/>
+                 <field name="qty_received" readonly="1"/>
+                 <field name="qty_billed" readonly="1"/>
+                 <field name="qty_to_be_billed" readonly="1"/>
+             </tree>
+         </field>
+    </record>
+
+     <record id="sale.action_order_report_all" model="ir.actions.act_window">
+        <field name="name">Sales Analysis</field>
+        <field name="res_model">sale.report</field>
+        <field name="view_mode">graph,pivot,tree</field>
+        <field name="view_id"></field>  <!-- force empty -->
+        <field name="search_view_id" ref="sale.view_order_product_search"/>
+        <field name="context">{'search_default_Sales':1, 'group_by_no_leaf':1,'group_by':[]}</field>
+        <field name="help">This report performs analysis on your quotations and sales orders. Analysis check your sales revenues and sort it by different group criteria (salesman, partner, product, etc.) Use this report to perform analysis on sales not having invoiced yet. If you want to analyse your turnover, you should use the Invoice Analysis report in the Accounting application.</field>
+    </record>
+</odoo>

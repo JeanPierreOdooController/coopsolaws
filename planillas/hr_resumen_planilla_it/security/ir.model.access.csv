@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_resumen_planilla_manager,hr.resumen.planilla.group,model_hr_resumen_planilla,group_hr_payslip_run_consolidado,1,1,1,1
+access_hr_resumen_planilla_line_manager,hr.resumen.planilla.line.group,model_hr_resumen_planilla_line,group_hr_payslip_run_consolidado,1,1,1,1
+access_hr_resumen_planilla_line_salary_manager,hr.resumen.planilla.line.salary.group,model_hr_resumen_planilla_line_salary,group_hr_payslip_run_consolidado,1,1,1,1
+access_hr_resumen_planilla_line_wd_manager,hr.resumen.planilla.line.wd.group,model_hr_resumen_planilla_line_wd,group_hr_payslip_run_consolidado,1,1,1,1
+access_hr_planilla_tabular_manager,hr.planilla.tabular.resumen.group,model_hr_planilla_tabular_resumen,group_hr_payslip_run_consolidado,1,1,1,0
